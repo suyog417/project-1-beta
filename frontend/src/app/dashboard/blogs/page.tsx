@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Plus, Search, Pencil, Trash2, Trash } from "lucide-react";
+import { Plus, Search, Pencil, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -14,11 +14,11 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { BlogForm } from "./blog-form";
-import cn from "classnames";
+import { cn } from "@/lib/utils";
 
 interface Blog {
   _id: string;
-  id: number;
+  id: string;
   title: string;
   description: string;
   content: string;

@@ -4,13 +4,9 @@
 import ImageCarousel from "@/components/carousel/image-carousel"
 import Footer from "@/components/footer/footer"
 import Header from "@/components/header/header"
-import HeroSection from "@/components/ui/hero-section"
 import { motion } from "framer-motion"
-import { LineChart, Scale, Coins, TrendingUp } from "lucide-react"
 import Image from "next/image"
 import type React from "react" // Added import for React
-import AssignmentTurnedIn, { Assessment, Groups } from '@mui/icons-material'
-import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 
 export default function ServicesPage() {
   return (

@@ -8,10 +8,9 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import Header from "@/components/header/header"
-import { Select } from "@headlessui/react"
 import { motion } from "framer-motion"
 import ImageCarousel from "@/components/carousel/image-carousel"
-import { LinkedIn, Place } from "@mui/icons-material"
+import { LinkedIn } from "@mui/icons-material"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({

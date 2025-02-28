@@ -2,11 +2,8 @@
 
 import type React from "react"
 import Image from "next/image"
-import { TrendingUp, Rocket, HandshakeIcon, Briefcase } from "lucide-react"
 import Header from "@/components/header/header"
 import { motion } from "framer-motion"
-import HeroSection from "@/components/ui/hero-section"
-import ImageCarousel from "@/components/carousel/image-carousel"
 
 export default function AboutPage() {
   return (

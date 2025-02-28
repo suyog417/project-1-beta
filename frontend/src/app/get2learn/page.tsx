@@ -1,27 +1,13 @@
 'use client'
 
-import type { Metadata } from "next";
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Frame, Plus } from "lucide-react";
-import { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import CourseStructure from "@/components/ui/course-item";
-import Popup from 'reactjs-popup';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { BlogForm } from "../dashboard/blogs/blog-form";
-import { Input } from "@/components/ui/input";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import EnrollmentForm from "@/components/forms/enrollment_form";
 
-// export const metadata: Metadata = {
-//   title: "Get2Learn",
-//   description: "Get2Learn is an initiative by Get2Act aimed at equipping budding actuaries with practical skills in insurance modelling, pricing, valuation, and data analytics.",
-// };
 
 export default function Get2LearnPage() {
-
-
 
   const trainingPrograms = [
     "Actuarial Modelling using different tools",
