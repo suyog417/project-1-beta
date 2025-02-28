@@ -27,7 +27,7 @@ export default function ContactPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const response = await fetch("https://portflio-plum.vercel.app/api/contact", {
         method: "POST", // Changed from PUT to POST
         headers: {
           "Content-Type": "application/json",

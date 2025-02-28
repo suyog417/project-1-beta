@@ -21,7 +21,7 @@ export default function BlogListing() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/blogs");
+        const res = await fetch("https://portflio-plum.vercel.app/api/blogs");
         const data = await res.json();
         setBlogPosts(data);
       } catch (error) {
@@ -124,7 +124,7 @@ export default function BlogListing() {
               <div className="relative h-48">
               {post.image && (
                 <img
-                  src={post.image.startsWith("http") ? post.image : `http://localhost:5000${post.image}`}
+                  src={post.image.startsWith("http") ? post.image : `https://portflio-plum.vercel.app${post.image}`}
                   alt={post.title}
                   className="w-full h-40 object-cover"
                 />

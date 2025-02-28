@@ -20,7 +20,7 @@ export default function AskActuaryPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/askAnActuary/submit", {
+      const response = await fetch("https://portflio-plum.vercel.app/api/askAnActuary/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
