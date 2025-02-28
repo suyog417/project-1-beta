@@ -25,11 +25,39 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
+
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        console.log("Form submitted successfully!")
+        // Optionally, reset the form
+        setFormData({
+          name: "",
+          email: "",
+          profession: "",
+          company: "",
+          phone: "",
+          message: "",
+        })
+        alert("Form submitted successfully!");
+      } else {
+        console.error("Form submission failed:", response.status)
+        alert("Form submission failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error)
+      alert("An error occurred. Please try again later.");
+    }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -154,6 +182,22 @@ export default function ContactPage() {
               </div>
               
               {/* profession */}
+              <div>
+                <label htmlFor="profession" className="block text-sm font-medium text-gray-700 mb-1">
+                  Profession
+                </label>
+                <select
+                  id="profession"
+                  name="profession"
+                  value={formData.profession}
+                  onChange={handleChange}
+                  className="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0073a6] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <option value="">Select Profession</option>
+                  <option value="Student">Student</option>
+                  <option value="Employee">Employee</option>
+                </select>
+              </div>
               {/* <div>
                 <label htmlFor="profession" className="block text-sm font-medium text-gray-700 mb-1">
                   Profession
@@ -215,4 +259,3 @@ export default function ContactPage() {
     </div>
   )
 }
-
