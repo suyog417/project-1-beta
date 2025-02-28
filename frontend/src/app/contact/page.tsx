@@ -24,19 +24,19 @@ export default function ContactPage() {
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
-        method: "POST",
+      const response = await fetch("/api/contact", {
+        method: "POST", // Changed from PUT to POST
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-      })
+      });
 
       if (response.ok) {
-        console.log("Form submitted successfully!")
+        console.log("Form submitted successfully!");
         // Optionally, reset the form
         setFormData({
           name: "",
@@ -45,17 +45,17 @@ export default function ContactPage() {
           company: "",
           phone: "",
           message: "",
-        })
+        });
         alert("Form submitted successfully!");
       } else {
-        console.error("Form submission failed:", response.status)
-        alert("Form submission failed. Please try again.");
+        console.error("Form submission failed:", response.status);
+        alert(`Form submission failed. Please try again. Status: ${response.status}`); // Added status code to alert
       }
     } catch (error) {
-      console.error("Error submitting form:", error)
+      console.error("Error submitting form:", error);
       alert("An error occurred. Please try again later.");
     }
-  }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData((prev) => ({

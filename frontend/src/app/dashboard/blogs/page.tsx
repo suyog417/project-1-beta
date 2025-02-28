@@ -18,6 +18,7 @@ import cn from "classnames";
 
 interface Blog {
   _id: string;
+  id: number;
   title: string;
   description: string;
   content: string;

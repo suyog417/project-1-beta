@@ -133,7 +133,7 @@ export default function BlogListing() {
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-semibold text-[#00415f] mb-2 line-clamp-2">{post.title}</h3>
                 <p className="text-gray-600 mb-4 line-clamp-3">{post.description}</p>
-                <Link href={`/blog/${post.slug}`} className="text-[#0073a6] hover:text-[#00415f] font-semibold mt-auto">
+                <Link href={`/blogs/${post._id}`} className="text-[#0073a6] hover:text-[#00415f] font-semibold mt-auto">
                   Read More
                 </Link>
               </div>

@@ -5,6 +5,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import connectDB from "./config/db.js"; // Ensure file extension is included
 import blogRoutes from "./routes/blogRoutes.js"; // Ensure file extension is included
+import contactRoutes from "./routes/contactRoutes.js"; // Ensure file extension is included
+import askAnActuaryRoutes from "./routes/askAnActuaryRoutes.js";
 
 // Get the directory name in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -30,6 +32,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ✅ Routes
 app.use("/api/blogs", blogRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api/askAnActuary", askAnActuaryRoutes);
 
 // ✅ Error Handling Middleware
 app.use((err, req, res, next) => {
