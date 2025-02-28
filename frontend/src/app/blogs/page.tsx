@@ -5,77 +5,31 @@ import Header from "@/components/header/header"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 
 interface BlogPost {
-  id: number
-  title: string
-  description: string
-  image: string
-  slug: string
+  _id: string;
+  title: string;
+  description: string;
+  image: string;
+  slug: string;
 }
 
 export default function BlogListing() {
-  const blogPosts : BlogPost[] = [
-    // {
-    //       id: 1,
-    //       title: "Navigating Regulatory Changes in the Insurance Sector",
-    //       description:
-    //         "Explore the evolving regulatory landscape and how insurers can adapt and thrive in the face of change. Understand key compliance requirements and strategic approaches...",
-    //       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blog-swhDIjRcKB4AB9GfrhGaqyCBp9BlCO.png",
-    //       slug: "regulatory-changes",
-    //     },
-  ]
-  // const blogPosts: BlogPost[] = [
-  //   {
-  //     id: 1,
-  //     title: "Navigating Regulatory Changes in the Insurance Sector",
-  //     description:
-  //       "Explore the evolving regulatory landscape and how insurers can adapt and thrive in the face of change. Understand key compliance requirements and strategic approaches...",
-  //     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blog-swhDIjRcKB4AB9GfrhGaqyCBp9BlCO.png",
-  //     slug: "regulatory-changes",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "The Role of Data Analytics in Modern Actuarial Practice",
-  //     description:
-  //       "Discover how data analytics is transforming actuarial practices, enhancing risk assessment, and enabling more informed decision-making for insurers...",
-  //     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blog-swhDIjRcKB4AB9GfrhGaqyCBp9BlCO.png",
-  //     slug: "data-analytics",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Optimizing Capital with Risk-Based Capital (RBC)",
-  //     description:
-  //       "Learn about effective capital optimization strategies using RBC modelling and how it strengthens financial stability and regulatory compliance for insurance companies...",
-  //     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blog-swhDIjRcKB4AB9GfrhGaqyCBp9BlCO.png",
-  //     slug: "capital-optimization",
-  //   },
-  //   // Duplicate posts to match the layout
-  //   {
-  //     id: 4,
-  //     title: "Navigating Regulatory Changes in the Insurance Sector",
-  //     description:
-  //       "Explore the evolving regulatory landscape and how insurers can adapt and thrive in the face of change. Understand key compliance requirements and strategic approaches...",
-  //     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blog-swhDIjRcKB4AB9GfrhGaqyCBp9BlCO.png",
-  //     slug: "regulatory-changes-2",
-  //   },
-  //   {
-  //     id: 5,
-  //     title: "The Role of Data Analytics in Modern Actuarial Practice",
-  //     description:
-  //       "Discover how data analytics is transforming actuarial practices, enhancing risk assessment, and enabling more informed decision-making for insurers...",
-  //     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blog-swhDIjRcKB4AB9GfrhGaqyCBp9BlCO.png",
-  //     slug: "data-analytics-2",
-  //   },
-  //   {
-  //     id: 6,
-  //     title: "Optimizing Capital with Risk-Based Capital (RBC)",
-  //     description:
-  //       "Learn about effective capital optimization strategies using RBC modelling and how it strengthens financial stability and regulatory compliance for insurance companies...",
-  //     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blog-swhDIjRcKB4AB9GfrhGaqyCBp9BlCO.png",
-  //     slug: "capital-optimization-2",
-  //   },
-  // ]
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/blogs");
+        const data = await res.json();
+        setBlogPosts(data);
+      } catch (error) {
+        console.error("Error fetching blogs", error);
+      }
+    };
+    fetchBlogs();
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col justify-stretch items-stretch">
@@ -164,11 +118,17 @@ export default function BlogListing() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post) => (
             <article
-              key={post.id}
+              key={post._id}
               className="flex flex-col bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="relative h-48">
-                <Image src={post.image || "/placeholder.svg"} alt={post.title} fill className="object-cover" />
+              {post.image && (
+                <img
+                  src={post.image.startsWith("http") ? post.image : `http://localhost:5000${post.image}`}
+                  alt={post.title}
+                  className="w-full h-40 object-cover"
+                />
+              )}
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-semibold text-[#00415f] mb-2 line-clamp-2">{post.title}</h3>
@@ -180,7 +140,7 @@ export default function BlogListing() {
             </article>
           ))}
         </div>
-        <div className="w-full flex justify-center py-12  "><h3>Nothing to show here.</h3></div>
+        {blogPosts.length == 0 ? <div className="w-full flex justify-center py-12  "><h3>Nothing to show here.</h3></div> : <div></div>}
       </div>
 
       {/* Footer */}

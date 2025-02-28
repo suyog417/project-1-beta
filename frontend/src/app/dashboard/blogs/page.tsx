@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Plus, Search, Pencil, Trash2 } from "lucide-react";
+import { Plus, Search, Pencil, Trash2, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -17,7 +17,7 @@ import { BlogForm } from "./blog-form";
 import cn from "classnames";
 
 interface Blog {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   content: string;
@@ -76,7 +76,7 @@ export default function BlogsPage() {
         }
 
         // If the deletion was successful on the server, update the state
-        setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.id !== id));
+        setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog._id !== id));
       } catch (error: any) {
         console.error("Error deleting blog:", error);
         alert(`Failed to delete the blog post: ${error.message || error}`); // Show the error message to the user
@@ -170,8 +170,12 @@ export default function BlogsPage() {
                     >
                       <Pencil className="h-4 w-4" />
                     </Button>
-                    <Button variant="ghost" size="icon" onClick={() => handleDelete(blog.id)}>
-                      <Trash2 className="h-4 w-4 text-red-500" />
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={async () => handleDelete(blog._id)}
+                    >
+                      <Trash className="h-4 w-4" />
                     </Button>
                   </div>
                 </TableCell>
