@@ -7,6 +7,7 @@ import {
   TableCaption,
   TableCell,
   TableHead,
+  TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
@@ -28,7 +29,7 @@ export default function ContactFormsPage() {
   useEffect(() => {
     const fetchContactForms = async () => {
       try {
-        const response = await fetch("/api/contact/all");
+        const response = await fetch("http://localhost:5000/api/contact/all");
         if (response.ok) {
           const data = await response.json();
           setContactForms(data);
@@ -45,7 +46,7 @@ export default function ContactFormsPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`/api/contact/${id}`, {
+      const response = await fetch(`http://localhost:5000/api/contact/${id}`, {
         method: "DELETE",
       });
 
@@ -67,7 +68,7 @@ export default function ContactFormsPage() {
       <h1 className="text-3xl font-bold text-[#00415f] mb-4">Contact Form Submissions</h1>
       <Table>
         <TableCaption>A list of all contact form submissions.</TableCaption>
-        <TableHead>
+        <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">Name</TableHead>
             <TableHead>Email</TableHead>
@@ -77,7 +78,7 @@ export default function ContactFormsPage() {
             <TableHead>Message</TableHead>
             <TableHead className="text-right">Actions</TableHead>
           </TableRow>
-        </TableHead>
+        </TableHeader>
         <TableBody>
           {contactForms.map((form) => (
             <TableRow key={form._id}>

@@ -13,14 +13,14 @@ export default function AskActuaryPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    question: "",
+    message: "",
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/askAnActuary/submit", {
+      const response = await fetch("http://localhost:5000/api/askAnActuary/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export default function AskActuaryPage() {
         setFormData({
           name: "",
           email: "",
-          question: "",
+          message: "",
         });
         alert("Query submitted successfully!");
       } else {
@@ -54,7 +54,7 @@ export default function AskActuaryPage() {
     }))
   }
 
-  const featuredQuestions = [
+  // const featuredQuestions = [
     // {
     //   id: 1,
     //   question: "Question no one",
@@ -73,7 +73,7 @@ export default function AskActuaryPage() {
     //   answer:
     //     "The insurance industry is constantly evolving, driven by economic shifts, technological advancements, and crucially, regulatory changes. Insurers today face a complex web of regulations designed to protect consumers, ensure solvency, and maintain market stability. Understanding and adapting to these changes is crucial for success in the modern insurance landscape.",
     // },
-  ]
+  // ]
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -109,13 +109,13 @@ export default function AskActuaryPage() {
             />
           </div>
           <div>
-            <label htmlFor="question" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
               Your Question
             </label>
             <Textarea
-              id="question"
-              name="question"
-              value={formData.question}
+              id="message"
+              name="message"
+              value={formData.message}
               onChange={handleChange}
               required
               className="w-full h-32"
