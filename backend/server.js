@@ -19,7 +19,7 @@ const app = express();
 
 // ✅ Improved CORS - Allow only specific origins (replace with your frontend URL)
 const corsOptions = {
-  origin: process.env.CLIENT_URL || "http://localhost:3000", // Adjust for your frontend
+  origin: process.env.CLIENT_URL || "https://get2act-client.vercel.app", // Adjust for your frontend
   methods: "GET,POST,PUT,DELETE",
   credentials: true,
 };
