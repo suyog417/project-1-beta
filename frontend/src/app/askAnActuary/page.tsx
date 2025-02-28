@@ -17,10 +17,35 @@ export default function AskActuaryPage() {
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
-  }
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/api/askAnActuary/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log("Form submitted successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          question: "",
+        });
+        alert("Query submitted successfully!");
+      } else {
+        console.error("Form submission failed:", response.status);
+        alert(`Form submission failed. Please try again. Status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again later.");
+    }
+  };
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({
@@ -30,24 +55,24 @@ export default function AskActuaryPage() {
   }
 
   const featuredQuestions = [
-    {
-      id: 1,
-      question: "Question no one",
-      answer:
-        "The insurance industry is constantly evolving, driven by economic shifts, technological advancements, and crucially, regulatory changes. Insurers today face a complex web of regulations designed to protect consumers, ensure solvency, and maintain market stability. Understanding and adapting to these changes is crucial for success in the modern insurance landscape.",
-    },
-    {
-      id: 2,
-      question: "Question no two",
-      answer:
-        "The insurance industry is constantly evolving, driven by economic shifts, technological advancements, and crucially, regulatory changes. Insurers today face a complex web of regulations designed to protect consumers, ensure solvency, and maintain market stability. Understanding and adapting to these changes is crucial for success in the modern insurance landscape.",
-    },
-    {
-      id: 3,
-      question: "Question no three",
-      answer:
-        "The insurance industry is constantly evolving, driven by economic shifts, technological advancements, and crucially, regulatory changes. Insurers today face a complex web of regulations designed to protect consumers, ensure solvency, and maintain market stability. Understanding and adapting to these changes is crucial for success in the modern insurance landscape.",
-    },
+    // {
+    //   id: 1,
+    //   question: "Question no one",
+    //   answer:
+    //     "The insurance industry is constantly evolving, driven by economic shifts, technological advancements, and crucially, regulatory changes. Insurers today face a complex web of regulations designed to protect consumers, ensure solvency, and maintain market stability. Understanding and adapting to these changes is crucial for success in the modern insurance landscape.",
+    // },
+    // {
+    //   id: 2,
+    //   question: "Question no two",
+    //   answer:
+    //     "The insurance industry is constantly evolving, driven by economic shifts, technological advancements, and crucially, regulatory changes. Insurers today face a complex web of regulations designed to protect consumers, ensure solvency, and maintain market stability. Understanding and adapting to these changes is crucial for success in the modern insurance landscape.",
+    // },
+    // {
+    //   id: 3,
+    //   question: "Question no three",
+    //   answer:
+    //     "The insurance industry is constantly evolving, driven by economic shifts, technological advancements, and crucially, regulatory changes. Insurers today face a complex web of regulations designed to protect consumers, ensure solvency, and maintain market stability. Understanding and adapting to these changes is crucial for success in the modern insurance landscape.",
+    // },
   ]
 
   return (
@@ -103,7 +128,7 @@ export default function AskActuaryPage() {
       </section>
 
       {/* Featured Questions Section */}
-      <section className="bg-white py-12">
+      {/* <section className="bg-white py-12">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-[#00415f] text-center mb-8">Featured Questions & Answers</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -118,11 +143,10 @@ export default function AskActuaryPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Footer */}
       <Footer/>
     </div>
   )
 }
-
