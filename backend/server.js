@@ -27,6 +27,8 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
+app.get("/", (req, res) => res.send("Express on Vercel"));
+
 // ✅ Serve static files from the "uploads" directory
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
