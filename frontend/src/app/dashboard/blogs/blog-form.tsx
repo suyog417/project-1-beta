@@ -44,8 +44,8 @@ export function BlogForm({ blog, onSuccess }: BlogFormProps) {
 
     try {
       const url = blog?.id
-        ? `http://localhost:5000/api/blogs/${blog.id}`
-        : "http://localhost:5000/api/blogs/create";
+        ? `https://back-get-2-act.vercel.app//api/blogs/${blog.id}`
+        : "https://back-get-2-act.vercel.app//api/blogs/create";
       const method = blog?.id ? "put" : "post";
 
       const formDataToSend = new FormData();

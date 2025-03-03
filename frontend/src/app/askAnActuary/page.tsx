@@ -42,7 +42,7 @@ export default function AskActuaryPage() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/askAnActuary/submit", {
+      const response = await fetch("https://back-get-2-act.vercel.app//api/askAnActuary/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

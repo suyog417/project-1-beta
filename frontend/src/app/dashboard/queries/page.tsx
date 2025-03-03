@@ -26,7 +26,7 @@ export default function QueriesPage() {
   useEffect(() => {
     const fetchQueries = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/askAnActuary/all");
+        const response = await fetch("https://back-get-2-act.vercel.app//api/askAnActuary/all");
         if (response.ok) {
           const data = await response.json();
           setQueries(data);
@@ -43,7 +43,7 @@ export default function QueriesPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/askAnActuary/${id}`, {
+      const response = await fetch(`https://back-get-2-act.vercel.app//api/askAnActuary/${id}`, {
         method: "DELETE",
       });
 
