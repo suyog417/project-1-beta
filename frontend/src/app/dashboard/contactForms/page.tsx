@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
-import { DNA } from "react-loader-spinner";
+import { Bars, DNA } from "react-loader-spinner";
 
 interface ContactForm {
   _id: string;
@@ -70,14 +70,17 @@ export default function ContactFormsPage() {
   return (
     <div>
       <h1 className="text-3xl font-bold text-[#00415f] mb-4">Contact Form Submissions</h1>
-      {isLoading ? <DNA
-        visible={true}
-        height="80"
-        width="80"
-        ariaLabel="dna-loading"
-        wrapperStyle={{}}
-        wrapperClass="dna-wrapper"
-      /> : <Table>
+      {isLoading ? <div className="h-full w-full flex items-center justify-center">
+        <Bars
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="bars-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div> : <Table>
         <TableCaption>A list of all contact form submissions.</TableCaption>
         <TableHeader>
           <TableRow>
