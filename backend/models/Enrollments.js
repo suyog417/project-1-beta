@@ -1,4 +1,3 @@
-// your-enrollment-model.js
 import mongoose from 'mongoose';
 
 const enrollmentSchema = new mongoose.Schema({
