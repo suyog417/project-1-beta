@@ -8,7 +8,6 @@ export default function EnrollmentForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    DOB: "",
     phone: "",
     city: "",
     coursetype: "Basic", // Default value
@@ -33,10 +32,9 @@ export default function EnrollmentForm() {
         setFormData({
           name: "",
           email: "",
-          DOB: "",
           phone: "",
           city: "",
-          coursetype: "Basic",
+          coursetype: "Basic"
         });
       } else {
         console.error("Form submission failed:", response.status);

@@ -1,15 +1,15 @@
-import mongoose from "mongoose";
+// your-enrollment-model.js
+import mongoose from 'mongoose';
 
-const enrollmentsSchema = new mongoose.Schema({
+const enrollmentSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
-  DOB: { type: String, required: true },
   phone: { type: String, required: true },
   city: { type: String, required: true },
   coursetype: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
 });
 
-const Enrollments = mongoose.model("Enrollments", enrollmentsSchema);
+const Enrollment = mongoose.model('Enrollment', enrollmentSchema);
 
-export default Enrollments;
+export default Enrollment;
