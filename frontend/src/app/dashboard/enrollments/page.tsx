@@ -19,7 +19,7 @@ export default function EnrollmentsDashboard() {
   useEffect(() => {
     const fetchEnrollments = async () => {
       try {
-        const res = await fetch("https://back-get-2-act.vercel.app/api/enrollments");
+        const res = await fetch("https://https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/enrollments");
         const data = await res.json();
         setEnrollments(data);
       } catch (error) {

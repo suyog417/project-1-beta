@@ -52,7 +52,7 @@ export default function ContactPage() {
     const fullPhoneNumber = countryCode + formData.phone;
 
     try {
-      const response = await fetch("https://back-get-2-act.vercel.app/api/contact", {
+      const response = await fetch("https://https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/contact", {
         method: "POST", // Changed from PUT to POST
         headers: {
           "Content-Type": "application/json",
