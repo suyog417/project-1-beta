@@ -7,7 +7,7 @@ import connectDB from "./config/db.js"; // Ensure file extension is included
 import blogRoutes from "./routes/blogRoutes.js"; // Ensure file extension is included
 import contactRoutes from "./routes/contactRoutes.js"; // Ensure file extension is included
 import askAnActuaryRoutes from "./routes/askAnActuaryRoutes.js";
-
+import sendEmailRoutes from "./routes/sendEmailRoutes.js";
 // Get the directory name in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,13 +19,14 @@ const app = express();
 
 // ✅ Improved CORS - Allow only specific origins (replace with your frontend URL)
 const corsOptions = {
-  origin: process.env.CLIENT_URL || "https://get2act-client.vercel.app", // Adjust for your frontend
+  origin: process.env.CLIENT_URL || "http://localhost:3000", // Adjust for your frontend
   methods: "GET,POST,PUT,DELETE",
   credentials: true,
 };
 app.use(cors(corsOptions));
 
 app.use(express.json());
+app.get("/", (req, res) => res.send("Express on Vercel"));
 
 // ✅ Serve static files from the "uploads" directory
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -34,6 +35,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/blogs", blogRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/askAnActuary", askAnActuaryRoutes);
+app.use("/api/sendEmail", sendEmailRoutes);
+
 
 // ✅ Error Handling Middleware
 app.use((err, req, res, next) => {

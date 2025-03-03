@@ -1,6 +1,6 @@
 "use client"
 
-import type React from "react"
+import React from "react"
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import Header from "@/components/header/header"
 import Footer from "@/components/footer/footer"
+import ReCAPTCHA from "react-google-recaptcha"
 
 export default function AskActuaryPage() {
   const [formData, setFormData] = useState({
@@ -16,11 +17,32 @@ export default function AskActuaryPage() {
     message: "",
   })
 
+  const [captchaVerified, setCaptchaVerified] = useState(false)
+
+  const recaptchaRef :any = React.createRef();
+
+  const onChange = (value: string | null) => {
+    if (value) {
+      setCaptchaVerified(true);
+    } else {
+      setCaptchaVerified(false);
+    }
+  };
+
+  const asyncScriptOnLoad = () => {
+    console.log('Google recaptcha loaded just fine')
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!captchaVerified) {
+      alert("Please verify that you are not a robot.");
+      return;
+    }
+
     try {
-      const response = await fetch("https://portflio-plum.vercel.app/api/askAnActuary/submit", {
+      const response = await fetch("http://localhost:5000/api/askAnActuary/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,6 +57,10 @@ export default function AskActuaryPage() {
           email: "",
           message: "",
         });
+        setCaptchaVerified(false);
+        if (recaptchaRef.current) {
+          recaptchaRef.current.reset();
+        }
         alert("Query submitted successfully!");
       } else {
         console.error("Form submission failed:", response.status);
@@ -121,7 +147,15 @@ export default function AskActuaryPage() {
               className="w-full h-32"
             />
           </div>
-          <Button type="submit" className="w-full bg-[#0073a6] hover:bg-[#00415f] text-white">
+
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+            onChange={onChange}
+            asyncScriptOnLoad={asyncScriptOnLoad}
+          />
+
+          <Button type="submit" disabled={!captchaVerified} className="w-full bg-[#0073a6] hover:bg-[#00415f] text-white">
             Submit Question
           </Button>
         </form>

@@ -1,11 +1,29 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import Image from 'next/image'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollThreshold = 10;
+      if (window.scrollY > scrollThreshold) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const navigation = [
     { name: "Home", href: "/" },
@@ -17,7 +35,7 @@ export default function Header() {
   ]
 
   return (
-    <header className="bg-[#00415f] shadow-md">
+    <header className={`bg-[#00415f] shadow-md fixed top-0 left-0 w-full z-50 ${isScrolled ? 'scrolled' : ''}`}>
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex w-full items-center justify-between py-4">
           <div className="flex items-center">
@@ -80,4 +98,3 @@ export default function Header() {
     </header>
   )
 }
-
