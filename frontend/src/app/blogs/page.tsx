@@ -20,7 +20,7 @@ export default function BlogListing() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch("https://back-get-2-act.vercel.app//api/blogs");
+        const res = await fetch("https://back-get-2-act.vercel.app/api/blogs");
         const data = await res.json();
         setBlogPosts(data);
       } catch (error) {

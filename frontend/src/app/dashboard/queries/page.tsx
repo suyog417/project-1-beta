@@ -26,7 +26,7 @@ export default function QueriesPage() {
   useEffect(() => {
     const fetchQueries = async () => {
       try {
-        const response = await fetch("https://back-get-2-act.vercel.app//api/askAnActuary/all");
+        const response = await fetch("https://back-get-2-act.vercel.app/api/askAnActuary/all");
         if (response.ok) {
           const data = await response.json();
           setQueries(data);

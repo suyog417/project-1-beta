@@ -29,7 +29,7 @@ export default function ContactFormsPage() {
   useEffect(() => {
     const fetchContactForms = async () => {
       try {
-        const response = await fetch("https://back-get-2-act.vercel.app//api/contact/all");
+        const response = await fetch("https://back-get-2-act.vercel.app/api/contact/all");
         if (response.ok) {
           const data = await response.json();
           setContactForms(data);

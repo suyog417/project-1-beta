@@ -6,7 +6,7 @@ import { LayoutDashboard, FileText, Settings, Users, Mail, Menu, X } from "lucid
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
-import { QuestionAnswer } from "@mui/icons-material"
+import { People, QuestionAnswer } from "@mui/icons-material"
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -15,6 +15,7 @@ const navigation = [
   { name: "Website Content", href: "/dashboard/content", icon: Settings },
   { name: "Contact Forms", href: "/dashboard/contactForms", icon: Mail },
   { name: "Queries", href: "/dashboard/queries", icon: QuestionAnswer },
+  { name: "Enrollments", href : "/dashboard/enrollments", icon: People}
 ]
 
 export function Sidebar() {

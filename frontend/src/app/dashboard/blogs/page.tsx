@@ -39,7 +39,7 @@ export default function BlogsPage() {
 
   const fetchBlogs = async () => {
     try {
-      const response = await fetch("https://back-get-2-act.vercel.app//api/blogs");
+      const response = await fetch("https://back-get-2-act.vercel.app/api/blogs");
       const data = await response.json();
       console.log(data)
       setBlogs(data);

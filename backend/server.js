@@ -8,6 +8,7 @@ import blogRoutes from "./routes/blogRoutes.js"; // Ensure file extension is inc
 import contactRoutes from "./routes/contactRoutes.js"; // Ensure file extension is included
 import askAnActuaryRoutes from "./routes/askAnActuaryRoutes.js";
 import sendEmailRoutes from "./routes/sendEmailRoutes.js";
+import enrollmenRoutes from "./routes/enrollmentRoutes.js";
 // Get the directory name in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -36,6 +37,7 @@ app.use("/api/blogs", blogRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/askAnActuary", askAnActuaryRoutes);
 app.use("/api/sendEmail", sendEmailRoutes);
+app.use("/api/enrollments",enrollmenRoutes);
 
 
 // ✅ Error Handling Middleware
