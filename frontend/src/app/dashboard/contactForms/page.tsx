@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
+import { DNA } from "react-loader-spinner";
 
 interface ContactForm {
   _id: string;
@@ -26,6 +27,8 @@ interface ContactForm {
 export default function ContactFormsPage() {
   const [contactForms, setContactForms] = useState<ContactForm[]>([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchContactForms = async () => {
       try {
@@ -39,6 +42,7 @@ export default function ContactFormsPage() {
       } catch (error) {
         console.error("Error fetching contact forms:", error);
       }
+      setIsLoading(false);
     };
 
     fetchContactForms();
@@ -66,7 +70,14 @@ export default function ContactFormsPage() {
   return (
     <div>
       <h1 className="text-3xl font-bold text-[#00415f] mb-4">Contact Form Submissions</h1>
-      <Table>
+      {isLoading ? <DNA
+        visible={true}
+        height="80"
+        width="80"
+        ariaLabel="dna-loading"
+        wrapperStyle={{}}
+        wrapperClass="dna-wrapper"
+      /> : <Table>
         <TableCaption>A list of all contact form submissions.</TableCaption>
         <TableHeader>
           <TableRow>
@@ -96,7 +107,7 @@ export default function ContactFormsPage() {
             </TableRow>
           ))}
         </TableBody>
-      </Table>
+      </Table>}
     </div>
   );
 }
