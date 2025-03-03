@@ -14,7 +14,7 @@ const navigation = [
   { name: "Team Members", href: "/dashboard/team", icon: Users },
   { name: "Website Content", href: "/dashboard/content", icon: Settings },
   { name: "Contact Forms", href: "/dashboard/contactForms", icon: Mail },
-  { name: "Queries", href: "/dashboard/queries", icon: QuestionAnswer },
+  { name: "Ask an Actuary Queries", href: "/dashboard/queries", icon: QuestionAnswer },
   { name: "Enrollments", href : "/dashboard/enrollments", icon: People}
 ]
 

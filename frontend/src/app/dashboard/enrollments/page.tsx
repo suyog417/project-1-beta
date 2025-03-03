@@ -40,7 +40,6 @@ export default function EnrollmentsDashboard() {
               <tr className="bg-gray-100">
                 <th className="py-2 px-4 border-b">Name</th>
                 <th className="py-2 px-4 border-b">Email</th>
-                <th className="py-2 px-4 border-b">DOB</th>
                 <th className="py-2 px-4 border-b">Phone</th>
                 <th className="py-2 px-4 border-b">City</th>
                 <th className="py-2 px-4 border-b">Course Type</th>
@@ -52,7 +51,6 @@ export default function EnrollmentsDashboard() {
                 <tr key={enrollment._id}>
                   <td className="py-2 px-4 border-b">{enrollment.name}</td>
                   <td className="py-2 px-4 border-b">{enrollment.email}</td>
-                  <td className="py-2 px-4 border-b">{enrollment.DOB}</td>
                   <td className="py-2 px-4 border-b">{enrollment.phone}</td>
                   <td className="py-2 px-4 border-b">{enrollment.city}</td>
                   <td className="py-2 px-4 border-b">{enrollment.coursetype}</td>
