@@ -29,7 +29,7 @@ export default function ContactFormsPage() {
   useEffect(() => {
     const fetchContactForms = async () => {
       try {
-        const response = await fetch("https://https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/contact/all");
+        const response = await fetch("https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/contact/all");
         if (response.ok) {
           const data = await response.json();
           setContactForms(data);
@@ -46,7 +46,7 @@ export default function ContactFormsPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`https://https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/contact/${id}`, {
+      const response = await fetch(`https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/contact/${id}`, {
         method: "DELETE",
       });
 
