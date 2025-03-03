@@ -7,9 +7,26 @@ import Image from 'next/image'
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(null);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
 
   useEffect(() => {
     const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down
+        setScrollDirection("down");
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up
+        setScrollDirection("up");
+      } else {
+        setScrollDirection(null);
+      }
+
+      setLastScrollY(currentScrollY);
+
       const scrollThreshold = 10;
       if (window.scrollY > scrollThreshold) {
         setIsScrolled(true);
@@ -23,7 +40,7 @@ export default function Header() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [lastScrollY]);
 
   const navigation = [
     { name: "Home", href: "/" },
@@ -35,7 +52,7 @@ export default function Header() {
   ]
 
   return (
-    <header className={`bg-[#00415f] shadow-md fixed top-0 left-0 w-full z-50 ${isScrolled ? 'scrolled' : ''}`}>
+    <header className={`bg-[#00415f] shadow-md fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${isScrolled ? 'scrolled' : ''} ${scrollDirection === "down" ? '-translate-y-full' : 'translate-y-0'}`}>
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex w-full items-center justify-between py-4">
           <div className="flex items-center">

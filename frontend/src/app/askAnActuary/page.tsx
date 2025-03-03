@@ -103,8 +103,8 @@ export default function AskActuaryPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Header />
       {/* Hero Section */}
-      <Header/>
       <div className="bg-[#0074a611] py-16 text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-[#00415f] mb-4">Ask an Actuary</h1>
         <p className="text-lg text-gray-700">Pose your actuarial questions and explore insightful discussions.</p>
