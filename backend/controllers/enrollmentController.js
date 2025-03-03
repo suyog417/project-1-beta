@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Enrollment from './your-enrollment-model'; // Assuming you have a model for Enrollment
+import Enrollment from '../models/Enrollments'; // Assuming you have a model for Enrollment
 
 // get all enrollments
 export const getEnrollments = async (req, res) => {
