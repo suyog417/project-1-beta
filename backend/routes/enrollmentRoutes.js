@@ -24,4 +24,4 @@ router.delete('/:id', deleteEnrollment)
 // UPDATE a enrollment
 router.patch('/:id', updateEnrollment)
 
-export default enrollmenRoutes
+export default router
