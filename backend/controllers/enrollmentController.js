@@ -1,15 +1,12 @@
-const Enrollment = require('../models/enrollmentModel')
-const mongoose = require('mongoose')
-
 // get all enrollments
-const getEnrollments = async (req, res) => {
+export const getEnrollments = async (req, res) => {
   const enrollments = await Enrollment.find({}).sort({createdAt: -1})
 
   res.status(200).json(enrollments)
 }
 
 // get a single enrollment
-const getEnrollment = async (req, res) => {
+export const getEnrollment = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -27,7 +24,7 @@ const getEnrollment = async (req, res) => {
 
 
 // create new enrollment
-const createEnrollment = async (req, res) => {
+export const createEnrollment = async (req, res) => {
   const {course_id, user_id} = req.body
 
   // add doc to db
@@ -40,7 +37,7 @@ const createEnrollment = async (req, res) => {
 }
 
 // delete a enrollment
-const deleteEnrollment = async (req, res) => {
+export const deleteEnrollment = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -57,7 +54,7 @@ const deleteEnrollment = async (req, res) => {
 }
 
 // update a enrollment
-const updateEnrollment = async (req, res) => {
+export const updateEnrollment = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -73,13 +70,4 @@ const updateEnrollment = async (req, res) => {
   }
 
   res.status(200).json(enrollment)
-}
-
-
-module.exports = {
-  getEnrollments,
-  getEnrollment,
-  createEnrollment,
-  deleteEnrollment,
-  updateEnrollment
 }
