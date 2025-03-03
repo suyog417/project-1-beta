@@ -33,7 +33,7 @@ app.get("/", (req, res) => res.send("Express on Vercel"));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ✅ Routes
-app.use("/api/blogs", blogRoutes);
+// app.use("/api/blogs", blogRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/askAnActuary", askAnActuaryRoutes);
 app.use("/api/sendEmail", sendEmailRoutes);
