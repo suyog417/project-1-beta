@@ -111,7 +111,7 @@ export default function AskActuaryPage() {
       </div>
 
       {/* Form Section */}
-      <section className="max-w-2xl mx-auto px-4 py-12 w-full">
+      <section className="max-w-2xl mx-auto px-4 py-12 w-full h-full">
         <h2 className="text-3xl font-bold text-[#00415f] text-center mb-8">Have a Question? Ask Us!</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
