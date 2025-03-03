@@ -240,7 +240,16 @@ export default function ContactPage() {
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                   Email
                 </label>
-                <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required />
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                  title="Please enter a valid email address"
+                />
               </div>
 
               <div>

@@ -7,7 +7,7 @@ import fs from "fs";
 const router = express.Router();
 
 // Create the "uploads" directory if it doesn't exist
-const uploadsDir = path.join(process.cwd(), "uploads");
+const uploadsDir = path.join("/tmp", "uploads");
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
 }
