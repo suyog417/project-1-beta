@@ -20,7 +20,7 @@ const app = express();
 
 // ✅ Improved CORS - Allow only specific origins (replace with your frontend URL)
 const corsOptions = {
-  origin: process.env.CLIENT_URL || "http://localhost:3000", // Adjust for your frontend
+  origin: process.env.CLIENT_URL || "https://www.get2act.in", // Adjust for your frontend
   methods: "GET,POST,PUT,DELETE",
   credentials: true,
 };
