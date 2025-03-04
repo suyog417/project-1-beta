@@ -16,8 +16,8 @@ export default function AboutPage() {
         description="Explore our comprehensive suite of actuarial and data-driven solutions."
       /> */}
       {/* Hero Section */}
-      <div className="bg-[#0074a611] h-[28rem] py-6 content-end text-center relative overflow-hidden">
-        <div className="absolute inset-0 top-[-64px] z-0">
+      <div className="bg-[#0074a611] h-[24rem] md:h-[32rem] py-6 content-end text-center relative overflow-hidden">
+        <div className="absolute inset-0 top-[63] md:top-[8px] z-0">
           {/* Replace with your actual ImageCarousel component */}
           <img
               src="/assets/team/group.jpg"
@@ -67,7 +67,7 @@ export default function AboutPage() {
           }}
           className="relative"
         >
-        <p className="text-lg text-gray-700 max-w-3xl mx-auto px-4 font-semibold">
+        <p className="md:text-lg text-gray-700 max-w-3xl mx-auto px-4 md:font-semibold text-sm">
         At Get2Act, we are more than just actuarial consultants—we are strategic partners in navigating risk,
         optimizing capital, and driving business growth. With expertise spanning across product pricing, reserving,
         risk-based capital (RBC), embedded value (EV) modelling, and data analytics, we help insurers make informed,
@@ -88,9 +88,9 @@ export default function AboutPage() {
               <Image
                 src="/assets/team/Anuradha.jpg"
                 alt="Anuradha Lal"
-                width={200}
-                height={200}
-                className="rounded-lg h-64 w-64"
+                width={1024}
+                height={1024}
+                className="rounded-lg h-64 w-64 object-cover"
               />
             </div>
             <div className="md:w-3/4">
@@ -120,8 +120,8 @@ As the founder of Get2Act, Anuradha brings a wealth of experience from her time 
                   <Image
                     src={member.img}
                     alt={member.name}
-                    width={200}
-                    height={200}
+                    width={2048}
+                    height={2048}
                     className="rounded-lg bg-[#8383833f] content-center object-cover h-60 w-48"
                   />
                 </div>

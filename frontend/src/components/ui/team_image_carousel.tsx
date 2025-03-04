@@ -28,8 +28,8 @@ const TeamImageCarousel: React.FC<TeamImageCarouselProps> = ({ imageUrls, alt })
         key={currentImageIndex} // Add key to trigger transition
         src={imageUrls[currentImageIndex]}
         alt={alt}
-        width={500} // Adjust as needed
-        height={300} // Adjust as needed
+        width={4000} // Adjust as needed
+        height={2400} // Adjust as needed
         className={`object-cover rounded-lg w-full h-full ${isFading ? 'opacity-0 transition-opacity duration-500' : 'opacity-100 transition-opacity duration-500'}`}
         style={{
           aspectRatio: "500 / 300",

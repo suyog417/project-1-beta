@@ -52,7 +52,7 @@ export default function Header() {
   ]
 
   return (
-    <header className={`bg-[#00415f] shadow-md fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${isScrolled ? 'scrolled' : ''} ${scrollDirection === "down" ? '-translate-y-full' : 'translate-y-0'}`}>
+    <header className={`bg-[#00415f] shadow-md top-0 left-0 w-full z-50`}>
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex w-full items-center justify-between py-4">
           <div className="flex items-center">
