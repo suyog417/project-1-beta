@@ -16,7 +16,7 @@ export default function AboutPage() {
         description="Explore our comprehensive suite of actuarial and data-driven solutions."
       /> */}
       {/* Hero Section */}
-      <div className="bg-[#0074a611] py-16 h-fit md:h-[32rem] content-end text-center relative overflow-hidden">
+      <div className="bg-[#0074a611] py-16 h-fit md:h-[32rem] content-end text-center relative overflow-hidden mt-[5rem]">
         <div className="absolute inset-0 md:top-[8px] z-0">
           {/* Replace with your actual ImageCarousel component */}
           <img
