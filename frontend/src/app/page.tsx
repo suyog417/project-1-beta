@@ -158,7 +158,7 @@ export default function Home() {
           <p className="text-lg  mb-8">At Get2Act, we are more than just actuarial consultants—we are strategic partners in navigating risk, optimizing capital, and driving business growth. With expertise spanning across Product Pricing, Reserving, Risk-Based Capital (RBC), Embedded Value (EV) Modelling, and Data Analytics.</p>
           <Link href={'/about'}><p className="text-[#0073A6] hover:underline">Read More About Us</p></Link>
         </div>
-        <div className="overflow-hidden w-full md:w-1/2 px-4 relative z-10">
+        <div className="overflow-hidden w-full md:w-1/2 px-4 relative z-10 h-96">
           {/*  You can keep this or remove it, depending on whether you want a separate image in addition to the carousel */}
           <TeamImageCarousel
             imageUrls={[

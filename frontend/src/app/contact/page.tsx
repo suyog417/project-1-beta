@@ -3,15 +3,16 @@
 import React from "react"
 
 import { useState, useRef } from "react"
-import { Phone, Mail} from "lucide-react"
+import { Phone, Mail, Check} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import Header from "@/components/header/header"
 import { motion } from "framer-motion"
 import ImageCarousel from "@/components/carousel/image-carousel"
-import { LinkedIn } from "@mui/icons-material"
+import { LinkedIn, Warning } from "@mui/icons-material"
 import ReCAPTCHA from "react-google-recaptcha"
+import { Dialog } from "@/components/ui/dialog"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -84,6 +85,14 @@ export default function ContactPage() {
             console.log("Confirmation email sent to user.");
           } else {
             console.error("Failed to send confirmation email:", emailResponse.status);
+            // return <Dialog>
+            //   <div className="flex gap-6">
+            //     <Warning/>
+            //     <h3>
+            //     Form submitted successfully! However, we failed to send you a confirmation email.
+            //     </h3>
+            //   </div>
+            // </Dialog>;
             alert("Form submitted successfully! However, we failed to send you a confirmation email.");
           }
         } catch (emailError) {
@@ -110,6 +119,14 @@ export default function ContactPage() {
         alert(`Form submission failed. Please try again. Status: ${response.status}`); // Added status code to alert
       }
     } catch (error) {
+      return <Dialog>
+              <div className="flex gap-6">
+                <Warning/>
+                <h3>
+                An error occurred. Please try again later.
+                </h3>
+              </div>
+            </Dialog>;
       console.error("Error submitting form:", error);
       alert("An error occurred. Please try again later.");
     }
