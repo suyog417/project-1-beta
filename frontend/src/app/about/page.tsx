@@ -16,15 +16,15 @@ export default function AboutPage() {
         description="Explore our comprehensive suite of actuarial and data-driven solutions."
       /> */}
       {/* Hero Section */}
-      <div className="bg-[#0074a611] h-[24rem] md:h-[32rem] py-6 content-end text-center relative overflow-hidden">
-        <div className="absolute inset-0 top-[63] md:top-[8px] z-0">
+      <div className="bg-[#0074a611] py-16 h-fit md:h-[32rem] content-end text-center relative overflow-hidden">
+        <div className="absolute inset-0 md:top-[8px] z-0">
           {/* Replace with your actual ImageCarousel component */}
           <img
               src="/assets/team/group.jpg"
               alt="Carousel Image"
               width={4160}
               height={2773}
-              className="object-cover w-full rounded-lg opacity-30 md:h-fit h-full"
+              className="object-cover w-full md:top-[64] rounded-lg opacity-30 md:h-fit h-full"
               style={{
                 aspectRatio: "700 / 400",
                 objectFit: "cover",
