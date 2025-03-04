@@ -61,7 +61,7 @@ export default function Home() {
     <div className="flex flex-wrap flex-col min-h-screen">
       <Header />
 
-      <main className="flex-grow flex items-center justify-center bg-[#0074a611] relative overflow-hidden">
+      <main className="flex-grow flex items-center justify-center bg-[#0074a611] relative overflow-hidden pt-[6.5rem]">
         <div className="absolute inset-0 h-full w-full flex">
           <ImageCarousel />
           <div className="absolute inset-0 opacity-40"></div>
@@ -152,13 +152,13 @@ export default function Home() {
 
       {/* Who We Are */}
 
-      <section className="justify-center items-center flex md:flex-row flex-col flex-grow gap-4 py-12 max-w-7xl self-center relative overflow-hidden">
-        <div className="text-center md:text-left px-4 md:w-1/2 flex flex-col relative z-10 text-black">
+      <section className="justify-center items-center flex md:flex-row flex-col flex-grow gap-2 py-12 max-w-7xl self-center relative overflow-hidden">
+        <div className="text-center md:text-left px-4 md:w-5/6 flex flex-col relative z-10 text-black">
           <h2 className="text-3xl font-bold  mb-4 text-[#0073A6]">Who We Are ?</h2>
           <p className="text-lg  mb-8">At Get2Act, we are more than just actuarial consultants—we are strategic partners in navigating risk, optimizing capital, and driving business growth. With expertise spanning across Product Pricing, Reserving, Risk-Based Capital (RBC), Embedded Value (EV) Modelling, and Data Analytics.</p>
           <Link href={'/about'}><p className="text-[#0073A6] hover:underline">Read More About Us</p></Link>
         </div>
-        <div className="overflow-hidden w-full md:w-1/2 px-4 relative z-10 h-96">
+        <div className="overflow-hidden w-4/6 md:w-full px-4 relative z-10 h-96">
           {/*  You can keep this or remove it, depending on whether you want a separate image in addition to the carousel */}
           <TeamImageCarousel
             imageUrls={[

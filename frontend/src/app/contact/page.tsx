@@ -147,7 +147,7 @@ export default function ContactPage() {
     <div className="min-h-screen flex flex-col">
         <Header/>
       {/* Hero Section */}
-      <div className="bg-[#0074a611] py-16 text-center relative overflow-hidden">
+      <div className="bg-[#0074a611] py-16 text-center relative overflow-hidden pt-[11.5rem]">
         <div className="absolute inset-0">
           {/* <img
             src="/assets/Asset_3.webp"

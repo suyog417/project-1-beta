@@ -35,7 +35,7 @@ export default function BlogListing() {
 
         <Header/>
       {/* Hero Section */}
-      <div className="bg-[#0074a611] py-16 text-center relative overflow-hidden">
+      <div className="bg-[#0074a611] py-16 text-center relative overflow-hidden pt-[11.5rem]">
         <div className="absolute inset-0">
           <ImageCarousel/>
           {/* <img
