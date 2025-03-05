@@ -60,8 +60,8 @@ import { LineWave } from 'react-loader-spinner';
           <Image
             src={images[currentImageIndex]}
             alt="Carousel Image"
-            width={700}
-            height={400}
+            width={1400}
+            height={800}
             className="object-cover w-full h-full rounded-lg opacity-30"
             style={{
               aspectRatio: "700 / 400",
