@@ -1,31 +1,51 @@
-import React from 'react';
+import * as React from 'react';
 
 interface EmailTemplateProps {
   name: string;
   email: string;
   phone: string;
-  company: string;
-  message: string;
   profession: string;
+  companyName: string;
+  message: string;
 }
 
-const EmailTemplate: React.FC<EmailTemplateProps> = ({ name, email, phone, company, message, profession }) => {
-  return (
-    <div style={{ fontFamily: 'Arial, sans-serif', lineHeight: '1.6', color: '#333' }}>
-      <h2 style={{ color: '#0056b3', borderBottom: '2px solid #0056b3', paddingBottom: '5px' }}>Contact Form Submission</h2>
-      <div style={{ marginTop: '20px' }}>
-        <p style={{ marginBottom: '10px' }}><strong>Name:</strong> {name}</p>
-        <p style={{ marginBottom: '10px' }}><strong>Email:</strong> {email}</p>
-        <p style={{ marginBottom: '10px' }}><strong>Phone:</strong> {phone}</p>
-        <p style={{ marginBottom: '10px' }}><strong>Profession:</strong> {profession}</p>
-        <p style={{ marginBottom: '10px' }}><strong>Company:</strong> {company}</p>
-        <p style={{ marginBottom: '10px' }}><strong>Message:</strong> {message}</p>
+export const EmailTemplate = ({
+  name,
+  email,
+  phone,
+  profession,
+  companyName,
+  message,
+} : EmailTemplateProps) => (
+  <div>
+    <h1>Welcome, {name}!</h1>
+    <section>
+      <h2>Contact Form</h2>
+      <div style={dataFields}>
+        Name : {name}
       </div>
-      <div style={{ marginTop: '30px', fontSize: '0.8em', color: '#777' }}>
-        This is an automatically generated email. Please do not reply.
+      <div style={dataFields}>
+        Email : {email}
       </div>
-    </div>
-  );
-};
+      <div style={dataFields}>
+        Phone : {phone}
+      </div>
+      <div style={dataFields}>
+        Profession : {profession}
+      </div>
+      <div style={dataFields}>
+        Company Name : {companyName}
+      </div>
+      <div style={dataFields}>
+        Message : {message}
+      </div>
+    </section>
+  </div>
+);
 
-export default EmailTemplate;
+const dataFields = {
+  padding: '0.5rem 0.5rem',
+  border: '1px solid #000',
+  borderRadius: '0.3rem',
+  margin: "1rem 0"
+}

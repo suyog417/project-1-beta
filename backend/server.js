@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 import connectDB from "./config/db.js"; // Ensure file extension is included
-import blogRoutes from "./routes/blogRoutes.js"; // Ensure file extension is included
+// import blogRoutes from "./routes/blogRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js"; // Ensure file extension is included
 import askAnActuaryRoutes from "./routes/askAnActuaryRoutes.js";
 import sendEmailRoutes from "./routes/sendEmailRoutes.js";
