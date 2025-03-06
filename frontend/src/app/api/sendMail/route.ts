@@ -2,7 +2,7 @@ import { render } from "@react-email/components";
 import { Resend } from "resend";
 import { EmailTemplate } from "@/components/email-template";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend("re_2Q8NoECY_9oejjDQZV4zC3mj4qJjcFd32");
 
 export async function POST(req: Request, res:Response) {
   try {
@@ -10,7 +10,7 @@ export async function POST(req: Request, res:Response) {
       await req.json();
 
     const { data, error } = await resend.emails.send({
-      from: "Get2Act <verifcation@resend.dev>",
+      from: "Get2Act <noreply@updates.get2act.in>",
       to: [email],
       subject: "New Contact Form Submission",
       html: await render(

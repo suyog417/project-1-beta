@@ -17,7 +17,7 @@ export async function POST(req: Request, res: Response) {
 
 
     const {data , error} = await resend.emails.send({
-      from: "Get2Act <verification@resend.dev>",
+      from: "Get2Act <noreply@updates.get2act.in>",
       to: [email],
       subject: "Verify Your Email",
       html: await render(VerificationEmailTemplate({ email, token })),
