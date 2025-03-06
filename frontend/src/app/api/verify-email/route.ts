@@ -1,7 +1,6 @@
 import { VerificationEmailTemplate } from "@/components/email-templates/verification-email-template";
 import { render } from "@react-email/components";
 import crypto from "crypto";
-import { Resend } from "resend"
 import { resend } from "../sendMail/route";
 
 const tokenStore = new Map<string, string>();

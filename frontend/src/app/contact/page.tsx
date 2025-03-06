@@ -52,7 +52,8 @@ export default function ContactPage() {
 
 
   useEffect(() => {
-    if(verificationStatus.get(formData.email)){
+    const status = verificationStatus.get(formData.email)
+    if(status){
       setIsVerifyingEmail(false)
       setEmailVerified(true);
     }
@@ -339,7 +340,7 @@ export default function ContactPage() {
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                   title="Please enter a valid email address"
                 />
-                <Button
+                {/* <Button
                   onClick={() => {
                     if(formData.email === "" || formData.email === null){
                       setEmailFieldError("Enter valid email.")
@@ -351,9 +352,9 @@ export default function ContactPage() {
                   disabled={emailVerified || isVerifyingEmail}
                   type="button"
                 >
-                {emailVerified ? isVerifyingEmail ? "Verifying...": "Verified" : "Verify"}</Button>
+                {emailVerified ? isVerifyingEmail ? "Verifying...": "Verified" : "Verify"}</Button> */}
                 </div>
-                {emailFieldError !== "" ?<p className="text-red-500">{emailFieldError}</p> : <p></p>}
+                {/* {emailFieldError !== "" ?<p className="text-red-500">{emailFieldError}</p> : <p></p>} */}
               </div>
 
               <div>
