@@ -206,7 +206,7 @@ export default function ContactFormsPage() {
       </div>
 
       <div className="text-sm text-muted-foreground">
-        Showing {filteredSubmissions.length} of {submissions.length} submissions
+        Showing {filteredSubmissions.length} of {contactForms.length} submissions
       </div>
 
       {/* Submission Details Dialog */}
