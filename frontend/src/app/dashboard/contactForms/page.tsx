@@ -100,7 +100,7 @@ export default function ContactFormsPage() {
   };
   const updateStatus = async (id: string, status: string) => {
     try {
-      const response = await fetch(`https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/contact/delete/${id}`, {
+      const response = await fetch(`https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/contact/update/${id}`, {
         method: "POST",
         body: JSON.stringify({ status:status }),
         headers: {

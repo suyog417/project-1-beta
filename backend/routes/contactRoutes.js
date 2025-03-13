@@ -55,7 +55,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.post("/delete/:id", async (req, res) => {
+router.post("/update/:id", async (req, res) => {
   try {
     const contactId = req.params.id
     const updatedContact = await Contact.findByIdAndUpdate(contactId)
