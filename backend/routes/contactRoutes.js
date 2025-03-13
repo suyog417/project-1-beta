@@ -55,4 +55,20 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.post("/delete/:id", async (req, res) => {
+  try {
+    const contactId = req.params.id
+    const updatedContact = await Contact.findByIdAndUpdate(contactId)
+
+    if(!updatedContact){
+      return res.status(404).json({ message: "Contact form submission not found" });
+    }
+
+    res.status(200).json({ message: "Contact form submission updated successfully" });
+  } catch(error){
+    console.error("Error updating contact submission:", error);
+    res.status(500).json({ message: "Error updating contact submission", error: error.message });
+  }
+});
+
 export default router;

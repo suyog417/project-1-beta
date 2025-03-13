@@ -98,6 +98,28 @@ export default function ContactFormsPage() {
       alert("Error deleting contact form.");
     }
   };
+  const updateStatus = async (id: string, status: string) => {
+    try {
+      const response = await fetch(`https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/contact/delete/${id}`, {
+        method: "POST",
+        body: JSON.stringify({ status:status }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setContactForms(contactForms.filter((form) => form._id !== id));
+        alert("Contact form deleted successfully!");
+      } else {
+        console.error("Failed to delete contact form");
+        alert("Failed to delete contact form.");
+      }
+    } catch (error) {
+      console.error("Error deleting contact form:", error);
+      alert("Error deleting contact form.");
+    }
+  };
 
   return (
     <div className="space-y-4">
@@ -134,6 +156,7 @@ export default function ContactFormsPage() {
               <TableHead className="hidden md:table-cell">Profession</TableHead>
               <TableHead>Company/College Name</TableHead>
               <TableHead>Message</TableHead>
+              <TableHead>Status</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -149,6 +172,7 @@ export default function ContactFormsPage() {
                   <TableCell>{submission.message}</TableCell>
                   <TableCell>{getStatusBadge(submission.status)}</TableCell>
                   <TableCell className="text-right">
+                    <div className="flex flex-row">
                     <Button
                       variant="outline"
                       size="sm"
@@ -159,6 +183,14 @@ export default function ContactFormsPage() {
                     >
                       View
                     </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleDelete(submission._id)}
+                    >
+                      Delete
+                    </Button>
+                    </div>
                   </TableCell>
                 </TableRow>
               ))
