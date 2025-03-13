@@ -1,20 +1,29 @@
 import { render } from "@react-email/components";
 import { Resend } from "resend";
 import { EmailTemplate } from "@/components/email-template";
+import { AdminEmailTemplate } from "@/components/admin-mail-template";
 
-const resend = new Resend("re_2Q8NoECY_9oejjDQZV4zC3mj4qJjcFd32");
+const resend = new Resend("re_2nH2fSBW_6Q42nGRdGbsYCwmTk9aVNzyN");
 
 export async function POST(req: Request, res:Response) {
   try {
     const { companyName, email, message, name, phone, profession } =
       await req.json();
 
+    // const { data, error } = await resend.emails.send({
+    //   from: "Get2Act <noreply@updates.get2act.in>",
+    //   to: [email],
+    //   subject: "Thanks for choosing Get2Act.",
+    //   html: await render(
+    //     EmailTemplate({ companyName, email, message, name, phone, profession })
+    //   ),
+    // });
     const { data, error } = await resend.emails.send({
-      from: "Get2Act <noreply@updates.get2act.in>",
+      from: "Get2Act <noreply@resend.dev>",
       to: [email],
-      subject: "New Contact Form Submission",
+      subject: "New Contact Form Submission.",
       html: await render(
-        EmailTemplate({ companyName, email, message, name, phone, profession })
+        AdminEmailTemplate({ companyName, email, message, name, phone, profession})
       ),
     });
 

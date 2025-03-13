@@ -1,6 +1,5 @@
 "use client"
 
-import React, { useEffect } from "react"
 import { useState, useRef } from "react"
 import { Phone, Mail, Check, Link} from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -9,9 +8,10 @@ import { Textarea } from "@/components/ui/textarea"
 import Header from "@/components/header/header"
 import { motion } from "framer-motion"
 import ImageCarousel from "@/components/carousel/image-carousel"
-import { LinkedIn } from "@mui/icons-material"
+import { LinkedIn, WarningAmber } from "@mui/icons-material"
 import ReCAPTCHA from "react-google-recaptcha"
 import { verificationStatus } from "../api/verify-email/route"
+import { z } from "zod"
 
 
 
@@ -23,11 +23,12 @@ export default function ContactPage() {
     company: "",
     phone: "",
     message: "",
+    status: "pending"
   })
 
   const Dialog = ({ children }: { children: React.ReactNode }) => {
     return (
-      <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: 'white', padding: '20px', border: '1px solid gray', borderRadius: "5px"}}>
+      <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: 'white', padding: '20px', border: '1px solid gray', borderRadius: "5px" }}>
         {children}
         <div className="flex flex-row items-end justify-end mt-8"><Button onClick={(e) => {
           setDialogContent(null);
@@ -39,39 +40,26 @@ export default function ContactPage() {
     );
   };
   
-  const Warning = () => {
-    return <span style={{ color: 'red' }}>⚠️</span>;
-  };
+
 
   const [captchaVerified, setCaptchaVerified] = useState(false)
   const [countryCode, setCountryCode] = useState("+1");
   const [dialogContent, setDialogContent] = useState<React.ReactNode | null>(null);
-  const [isVerifyingEmail, setIsVerifyingEmail] = useState(false);
-  const [emailVerified, setEmailVerified] = useState(false)
-  const [emailFieldError, setEmailFieldError] = useState("")
 
-
-  useEffect(() => {
-    const status = verificationStatus.get(formData.email)
-    if(status){
-      setIsVerifyingEmail(false)
-      setEmailVerified(true);
-    }
-  })
-  const handleVerifyEmail = async () => {
-    setIsVerifyingEmail(true);
-    try {
-      const response = await fetch('/api/verify-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: formData.email }),
-      });
-    } catch (error) {
-      console.error('Error verifying email:', error);
-    } finally {setIsVerifyingEmail(false);}
-  };
+  // const handleVerifyEmail = async () => {
+  //   setIsVerifyingEmail(true);
+  //   try {
+  //     const response = await fetch('/api/verify-email', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ email: formData.email }),
+  //     });
+  //   } catch (error) {
+  //     console.error('Error verifying email:', error);
+  //   } finally {setIsVerifyingEmail(false);}
+  // };
 
   const recaptchaRef :any = useRef(null);
 
@@ -90,11 +78,22 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if(!z.string().email().parse(formData.email)){
+      setDialogContent(
+        <Dialog>
+          <div className="flex gap-6 flex-col">
+            <WarningAmber className="h-32 w-32" />
+            <h3>Enter valid email address.</h3>
+          </div>
+        </Dialog>
+      );
+    }
+
     if (!captchaVerified) {
       setDialogContent(
         <Dialog>
           <div className="flex gap-6">
-            <Warning />
+            <WarningAmber />
             <h3>Please verify that you are not a robot.</h3>
           </div>
         </Dialog>
@@ -127,53 +126,53 @@ export default function ContactPage() {
 
 
         // Send a copy of the form data to the user
-        // try {
-        //   const emailResponse = await fetch('http://localhost:3000/api/sendMail', {
-        //     method: 'POST',
-        //     headers: {
-        //       'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //       name: formData.name,
-        //       email: formData.email,
-        //       phone: fullPhoneNumber,
-        //       company: formData.company,
-        //       message: formData.message,
-        //       profession: formData.profession,
-        //     }),
-        //   });
+        try {
+          const emailResponse = await fetch('http://localhost:3000/api/sendMail', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: formData.name,
+              email: formData.email,
+              phone: fullPhoneNumber,
+              company: formData.company,
+              message: formData.message,
+              profession: formData.profession,
+            }),
+          });
 
-        //   if (emailResponse.ok) {
-        //     console.log('Confirmation email sent to user.');
-        //     setDialogContent(
-        //       <Dialog>
-        //         <div className="flex gap-6">
-        //           <h3>Form submitted successfully! Confirmation email sent.</h3>
-        //         </div>
-        //       </Dialog>
-        //     );
-        //   } else {
-        //     console.error('Failed to send confirmation email:', emailResponse.status);
-        //     setDialogContent(
-        //       <Dialog>
-        //         <div className="flex gap-6">
-        //           <Warning />
-        //           <h3>Form submitted successfully! However, we failed to send you a confirmation email.</h3>
-        //         </div>
-        //       </Dialog>
-        //     );
-        //   }
-        // } catch (emailError) {
-        //   console.error('Error sending confirmation email:', emailError);
-        //   setDialogContent(
-        //     <Dialog>
-        //       <div className="flex gap-6">
-        //         <Warning />
-        //         <h3>Form submitted successfully! However, there was an error sending you a confirmation email.</h3>
-        //       </div>
-        //     </Dialog>
-        //   );
-        // }
+          if (emailResponse.ok) {
+            console.log('Confirmation email sent to user.');
+            setDialogContent(
+              <Dialog>
+                <div className="flex gap-6">
+                  <h3>Form submitted successfully! Confirmation email sent.</h3>
+                </div>
+              </Dialog>
+            );
+          } else {
+            console.error('Failed to send confirmation email:', emailResponse.status);
+            setDialogContent(
+              <Dialog>
+                <div className="flex gap-6">
+                  <WarningAmber />
+                  <h3>Form submitted successfully! However, we failed to send you a confirmation email.</h3>
+                </div>
+              </Dialog>
+            );
+          }
+        } catch (emailError) {
+          console.error('Error sending confirmation email:', emailError);
+          setDialogContent(
+            <Dialog>
+              <div className="flex gap-6">
+                <WarningAmber />
+                <h3>Form submitted successfully! However, there was an error sending you a confirmation email.</h3>
+              </div>
+            </Dialog>
+          );
+        }
         verificationStatus.set(formData.email, false)
         // Optionally, reset the form
         setFormData({
@@ -183,6 +182,7 @@ export default function ContactPage() {
           company: '',
           phone: '',
           message: '',
+          status: 'pending'
         });
         setCaptchaVerified(false);
         if (recaptchaRef.current) {
@@ -194,7 +194,7 @@ export default function ContactPage() {
         setDialogContent(
           <Dialog>
             <div className="flex gap-6">
-              <Warning />
+              <WarningAmber />
               <h3>Form submission failed. Please try again. Status: {response.status}</h3>
             </div>
           </Dialog>
@@ -205,7 +205,7 @@ export default function ContactPage() {
       setDialogContent(
         <Dialog>
           <div className="flex gap-6">
-            <Warning />
+            <WarningAmber />
             <h3>An error occurred. Please try again later.</h3>
           </div>
         </Dialog>
