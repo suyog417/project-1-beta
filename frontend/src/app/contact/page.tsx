@@ -126,53 +126,53 @@ export default function ContactPage() {
 
 
         // Send a copy of the form data to the user
-        try {
-          const emailResponse = await fetch('http://localhost:3000/api/sendMail', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              name: formData.name,
-              email: formData.email,
-              phone: fullPhoneNumber,
-              company: formData.company,
-              message: formData.message,
-              profession: formData.profession,
-            }),
-          });
+        // try {
+        //   const emailResponse = await fetch('http://localhost:3000/api/sendMail', {
+        //     method: 'POST',
+        //     headers: {
+        //       'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({
+        //       name: formData.name,
+        //       email: formData.email,
+        //       phone: fullPhoneNumber,
+        //       company: formData.company,
+        //       message: formData.message,
+        //       profession: formData.profession,
+        //     }),
+        //   });
 
-          if (emailResponse.ok) {
-            console.log('Confirmation email sent to user.');
-            setDialogContent(
-              <Dialog>
-                <div className="flex gap-6">
-                  <h3>Form submitted successfully! Confirmation email sent.</h3>
-                </div>
-              </Dialog>
-            );
-          } else {
-            console.error('Failed to send confirmation email:', emailResponse.status);
-            setDialogContent(
-              <Dialog>
-                <div className="flex gap-6">
-                  <WarningAmber />
-                  <h3>Form submitted successfully! However, we failed to send you a confirmation email.</h3>
-                </div>
-              </Dialog>
-            );
-          }
-        } catch (emailError) {
-          console.error('Error sending confirmation email:', emailError);
-          setDialogContent(
-            <Dialog>
-              <div className="flex gap-6">
-                <WarningAmber />
-                <h3>Form submitted successfully! However, there was an error sending you a confirmation email.</h3>
-              </div>
-            </Dialog>
-          );
-        }
+        //   if (emailResponse.ok) {
+        //     console.log('Confirmation email sent to user.');
+        //     setDialogContent(
+        //       <Dialog>
+        //         <div className="flex gap-6">
+        //           <h3>Form submitted successfully! Confirmation email sent.</h3>
+        //         </div>
+        //       </Dialog>
+        //     );
+        //   } else {
+        //     console.error('Failed to send confirmation email:', emailResponse.status);
+        //     setDialogContent(
+        //       <Dialog>
+        //         <div className="flex gap-6">
+        //           <WarningAmber />
+        //           <h3>Form submitted successfully! However, we failed to send you a confirmation email.</h3>
+        //         </div>
+        //       </Dialog>
+        //     );
+        //   }
+        // } catch (emailError) {
+        //   console.error('Error sending confirmation email:', emailError);
+        //   setDialogContent(
+        //     <Dialog>
+        //       <div className="flex gap-6">
+        //         <WarningAmber />
+        //         <h3>Form submitted successfully! However, there was an error sending you a confirmation email.</h3>
+        //       </div>
+        //     </Dialog>
+        //   );
+        // }
         verificationStatus.set(formData.email, false)
         // Optionally, reset the form
         setFormData({
