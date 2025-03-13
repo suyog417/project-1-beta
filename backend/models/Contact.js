@@ -7,6 +7,7 @@ const ContactSchema = new mongoose.Schema({
   company: { type: String },
   phone: { type: String },
   message: { type: String, required: true },
+  status: { type: String, default: "pending" },
 });
 
 const Contact = mongoose.model("Contact", ContactSchema);
