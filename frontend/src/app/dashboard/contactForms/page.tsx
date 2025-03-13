@@ -263,6 +263,7 @@ export default function ContactFormsPage() {
                   </Select>
                   <Button
                     onClick={() => {
+                      updateStatus(selectedSubmission._id, newStatus)
                       // updateSubmissionStatus(selectedSubmission._id, newStatus)
                     }}
                     disabled={selectedSubmission.status === newStatus}
