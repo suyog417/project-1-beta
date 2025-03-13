@@ -110,14 +110,14 @@ export default function ContactFormsPage() {
 
       if (response.ok) {
         setContactForms(contactForms.filter((form) => form._id !== id));
-        alert("Contact form deleted successfully!");
+        alert("Contact form updated successfully!");
       } else {
-        console.error("Failed to delete contact form");
-        alert("Failed to delete contact form.");
+        console.error("Failed to update contact form");
+        alert("Failed to update contact form.");
       }
     } catch (error) {
-      console.error("Error deleting contact form:", error);
-      alert("Error deleting contact form.");
+      console.error("Error updated contact form:", error);
+      alert("Error updating contact form.");
     }
   };
 
