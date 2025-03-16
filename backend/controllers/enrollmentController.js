@@ -108,3 +108,25 @@ export const updateEnrollment = async (req, res) => {
     res.status(500).json({ error: error.message }); // Handle server errors
   }
 };
+
+
+export const updateEnrollmentStatus = async (req, res) => {
+  try{
+    const { id } = req.params;
+  const { status } = req.body;
+  const updatedEnrollmentStatus = await Enrollment.findByIdAndUpdate(
+    id,
+    { status : status },
+    { new: true }
+  );
+
+  if(!updatedEnrollmentStatus){
+    return res.status(404).json({ message: "Enrollment form submission not found" });
+  }
+
+  res.status(200).json({ message: "Enrollment form submission updated successfully" });
+} catch(error){
+  console.error("Error updating enrollment submission:", error);
+  res.status(500).json({ message: "Error updating enrollment submission", error: error.message });
+}
+}

@@ -24,4 +24,6 @@ router.delete('/:id', deleteEnrollment)
 // UPDATE a enrollment
 router.patch('/:id', updateEnrollment)
 
+router.patch('/update/:id', updateEnrollment)
+
 export default router

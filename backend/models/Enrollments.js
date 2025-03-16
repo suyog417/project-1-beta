@@ -7,6 +7,7 @@ const enrollmentSchema = new mongoose.Schema({
   city: { type: String, required: true },
   coursetype: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
+  status : {type: String, default: "pending"}
 });
 
 const Enrollment = mongoose.model('Enrollment', enrollmentSchema);

@@ -58,7 +58,12 @@ router.delete("/:id", async (req, res) => {
 router.post("/update/:id", async (req, res) => {
   try {
     const contactId = req.params.id
-    const updatedContact = await Contact.findByIdAndUpdate(contactId)
+    const { status } = req.body;
+    const updatedContact = await Contact.findByIdAndUpdate(
+      contactId,
+      { status : status },
+      { new: true }
+    );
 
     if(!updatedContact){
       return res.status(404).json({ message: "Contact form submission not found" });
