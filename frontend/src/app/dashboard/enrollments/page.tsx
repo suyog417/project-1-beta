@@ -40,16 +40,17 @@ export default function EnrollmentsDashboard() {
   const [newStatus, setNewStatus] = useState<Enrollment["status"]>("pending")
   const [isLoading, setIsLoading] = useState(true);
 
+  const fetchEnrollments = async () => {
+    try {
+      const res = await fetch("https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/enrollments");
+      const data = await res.json();
+      setEnrollments(data);
+    } catch (error) {
+      console.error("Error fetching enrollments", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchEnrollments = async () => {
-      try {
-        const res = await fetch("https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/enrollments");
-        const data = await res.json();
-        setEnrollments(data);
-      } catch (error) {
-        console.error("Error fetching enrollments", error);
-      }
-    };
 
     fetchEnrollments();
   }, []);
@@ -63,6 +64,8 @@ export default function EnrollmentsDashboard() {
 
       if (response.ok) {
         setEnrollments(enrollments.filter((form) => form._id !== id));
+
+        fetchEnrollments()
         alert("Contact form deleted successfully!");
       } else {
         console.error("Failed to delete contact form");
@@ -96,6 +99,8 @@ export default function EnrollmentsDashboard() {
 
       if (response.ok) {
         setEnrollments(enrollments.filter((form) => form._id !== id));
+
+        fetchEnrollments()
         alert("Contact form updated successfully!");
       } else {
         console.error("Failed to update contact form");

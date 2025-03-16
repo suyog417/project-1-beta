@@ -4,7 +4,8 @@ createEnrollment,
   getEnrollment,
   getEnrollments,
   deleteEnrollment,
-  updateEnrollment
+  updateEnrollment,
+  updateEnrollmentStatus
 } from '../controllers/enrollmentController.js';
 
 const router = express.Router()
@@ -24,6 +25,6 @@ router.delete('/:id', deleteEnrollment)
 // UPDATE a enrollment
 router.patch('/:id', updateEnrollment)
 
-router.patch('/update/:id', updateEnrollment)
+router.patch('/update/:id', updateEnrollmentStatus)
 
 export default router

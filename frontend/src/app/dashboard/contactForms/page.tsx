@@ -38,21 +38,22 @@ export default function ContactFormsPage() {
   const [newStatus, setNewStatus] = useState<ContactForm["status"]>("pending")
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchContactForms = async () => {
-      try {
-        const response = await fetch("https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/contact/all");
-        if (response.ok) {
-          const data = await response.json();
-          setContactForms(data);
-        } else {
-          console.error("Failed to fetch contact forms");
-        }
-      } catch (error) {
-        console.error("Error fetching contact forms:", error);
+  const fetchContactForms = async () => {
+    try {
+      const response = await fetch("https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/contact/all");
+      if (response.ok) {
+        const data = await response.json();
+        setContactForms(data);
+      } else {
+        console.error("Failed to fetch contact forms");
       }
-      setIsLoading(false);
-    };
+    } catch (error) {
+      console.error("Error fetching contact forms:", error);
+    }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
 
     fetchContactForms();
   }, []);
@@ -88,6 +89,7 @@ export default function ContactFormsPage() {
 
       if (response.ok) {
         setContactForms(contactForms.filter((form) => form._id !== id));
+        fetchContactForms()
         alert("Contact form deleted successfully!");
       } else {
         console.error("Failed to delete contact form");
@@ -110,6 +112,7 @@ export default function ContactFormsPage() {
 
       if (response.ok) {
         setContactForms(contactForms.filter((form) => form._id !== id));
+        fetchContactForms()
         alert("Contact form updated successfully!");
       } else {
         console.error("Failed to update contact form");
