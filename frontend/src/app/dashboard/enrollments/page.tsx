@@ -90,7 +90,7 @@ export default function EnrollmentsDashboard() {
   const updateStatus = async (id: string, status: string) => {
     try {
       const response = await fetch(`https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/enrollments/update/${id}`, {
-        method: "POST",
+        method: "PATCH",
         body: JSON.stringify({ status:status }),
         headers: {
           "Content-Type": "application/json",
@@ -100,7 +100,7 @@ export default function EnrollmentsDashboard() {
       if (response.ok) {
         setEnrollments(enrollments.filter((form) => form._id !== id));
 
-        fetchEnrollments()
+        // fetchEnrollments()
         alert("Enrollment form updated successfully!");
       } else {
         console.error("Failed to update enrollment form");
