@@ -16,6 +16,7 @@ export default function EnrollmentForm() {
     phone: "",
     city: "",
     coursetype: "Basic", // Default value
+    status : "pending"
   });
 
   const onChange = (value: string | null) => {
@@ -57,7 +58,8 @@ export default function EnrollmentForm() {
           email: "",
           phone: "",
           city: "",
-          coursetype: "Basic"
+          coursetype: "Basic",
+          status: "pending"
         });
         setCaptchaVerified(false);
         if (recaptchaRef.current) {

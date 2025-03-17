@@ -101,14 +101,14 @@ export default function EnrollmentsDashboard() {
         setEnrollments(enrollments.filter((form) => form._id !== id));
 
         fetchEnrollments()
-        alert("Contact form updated successfully!");
+        alert("Enrollment form updated successfully!");
       } else {
-        console.error("Failed to update contact form");
-        alert("Failed to update contact form.");
+        console.error("Failed to update enrollment form");
+        alert("Failed to update enrollment form.");
       }
     } catch (error) {
-      console.error("Error updated contact form:", error);
-      alert("Error updating contact form.");
+      console.error("Error updated enrollment form:", error);
+      alert("Error updating enrollment form.");
     }
   };
 
