@@ -121,7 +121,7 @@ export default function EnrollmentsDashboard() {
       if (response.ok) {
         setEnrollments(enrollments.filter((form) => form._id !== id));
 
-        // fetchEnrollments()
+        fetchEnrollments()
         alert("Enrollment form updated successfully!");
       } else {
         console.error("Failed to update enrollment form");
