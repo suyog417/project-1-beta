@@ -9,6 +9,7 @@ export default function EnrollmentForm() {
   const recaptchaRef :any = useRef(null);
   const [captchaVerified, setCaptchaVerified] = useState(false)
   const [countryCode, setCountryCode] = useState("+1");
+  const [isLoading, setIsLoading] = useState(false)
 
   const [formData, setFormData] = useState({
     name: "",
@@ -41,6 +42,7 @@ export default function EnrollmentForm() {
     const fullPhoneNumber = countryCode + formData.phone;
 
     try {
+      setIsLoading(true)
       const response = await fetch("https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/enrollments", {
         method: "POST",
         headers: {
@@ -62,14 +64,17 @@ export default function EnrollmentForm() {
           status: "pending"
         });
         setCaptchaVerified(false);
+        setIsLoading(false)
         if (recaptchaRef.current) {
           recaptchaRef.current.reset();
         }
       } else {
+        setIsLoading(false)
         console.error("Form submission failed:", response.status);
         alert(`Enrollment failed. Please try again. Status: ${response.status}`);
       }
     } catch (error) {
+      setIsLoading(false)
       console.error("Error submitting form:", error);
       alert("An error occurred. Please try again later.");
     }
@@ -394,6 +399,7 @@ export default function EnrollmentForm() {
           <option value="Advance">Advance</option>
         </select>
       </div>
+      {formData.coursetype == "Advance" && <p><strong>Note: </strong>Enrollment in the advanced module requires meeting specific eligibility criteria. Enrollment is subjective and based on individual assessment.</p>}
 
       <ReCAPTCHA
                 ref={recaptchaRef}
@@ -402,7 +408,7 @@ export default function EnrollmentForm() {
                 asyncScriptOnLoad={asyncScriptOnLoad}
               />
 
-      <Button disabled={!captchaVerified} type="submit">Enroll</Button>
+      {!isLoading ? <Button disabled={!captchaVerified} type="submit">Enroll</Button> : <Button disabled={true}>Submitting....</Button>}
     </form>
   );
 }

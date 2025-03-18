@@ -5,6 +5,7 @@ import Link from "next/link"
 import CourseStructure from "@/components/ui/course-item";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import EnrollmentForm from "@/components/forms/enrollment_form";
+import VisionMission from "@/components/vision-mission";
 
 
 export default function Get2LearnPage() {
@@ -174,7 +175,7 @@ export default function Get2LearnPage() {
       </section>
 
       {/* Vision & Mission */}
-      <section className="py-16 px-6 flex flex-col">
+      {/* <section className="py-16 px-6 flex flex-col">
       <h2 className="text-3xl font-bold text-[#00415f] mb-4 text-center">Vision and Mission</h2>
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 grid-cols-1 md:gap-24 gap-12 content-center justify-center items-center">
           <div className="p-4 text-center bg-[#d7152f] rounded-full h-80 w-80 content-center">
@@ -194,7 +195,9 @@ export default function Get2LearnPage() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
+
+      <VisionMission/>
 
       {/* Key Offerings */}
       {/* <section className="bg-[#f7f7f8] py-16 px-6">

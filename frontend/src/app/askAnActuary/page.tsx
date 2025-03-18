@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import Header from "@/components/header/header"
 import Footer from "@/components/footer/footer"
 import ReCAPTCHA from "react-google-recaptcha"
+import { set } from "zod"
 
 export default function AskActuaryPage() {
   const [formData, setFormData] = useState({
@@ -20,6 +21,7 @@ export default function AskActuaryPage() {
   const [captchaVerified, setCaptchaVerified] = useState(false)
 
   const recaptchaRef :any = React.createRef();
+  const [isLoading,setIsLoading] = useState(false)
 
   const onChange = (value: string | null) => {
     if (value) {
@@ -42,6 +44,7 @@ export default function AskActuaryPage() {
     }
 
     try {
+      setIsLoading(true)
       const response = await fetch("https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/askAnActuary/submit", {
         method: "POST",
         headers: {
@@ -58,15 +61,18 @@ export default function AskActuaryPage() {
           message: "",
         });
         setCaptchaVerified(false);
+        setIsLoading(false)
         if (recaptchaRef.current) {
           recaptchaRef.current.reset();
         }
         alert("Query submitted successfully!");
       } else {
+        setIsLoading(false)
         console.error("Form submission failed:", response.status);
         alert(`Form submission failed. Please try again. Status: ${response.status}`);
       }
     } catch (error) {
+      setIsLoading(false)
       console.error("Error submitting form:", error);
       alert("An error occurred. Please try again later.");
     }
@@ -155,9 +161,16 @@ export default function AskActuaryPage() {
             asyncScriptOnLoad={asyncScriptOnLoad}
           />
 
-          <Button type="submit" disabled={!captchaVerified} className="w-full bg-[#0073a6] hover:bg-[#00415f] text-white">
+          {!isLoading ? <Button 
+          type="submit" 
+          disabled={!captchaVerified} 
+          className="w-full bg-[#0073a6] hover:bg-[#00415f] text-white">
             Submit Question
-          </Button>
+          </Button> : <Button 
+          disabled={true} 
+          className="w-full bg-[#0073a6] hover:bg-[#00415f] text-white">
+            Submitting...
+          </Button>}
         </form>
       </section>
 

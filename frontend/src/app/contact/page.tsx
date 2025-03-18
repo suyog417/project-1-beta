@@ -58,6 +58,8 @@ export default function ContactPage() {
     null,
   );
 
+  const [isSending, setIsSending] = useState(false);
+
   // const handleVerifyEmail = async () => {
   //   setIsVerifyingEmail(true);
   //   try {
@@ -117,6 +119,7 @@ export default function ContactPage() {
     const fullPhoneNumber = countryCode + formData.phone;
 
     try {
+      setIsSending(true);
       const response = await fetch(
         "https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/contact",
         {
@@ -199,11 +202,13 @@ export default function ContactPage() {
           status: "pending",
         });
         setCaptchaVerified(false);
+        setIsSending(false);
         if (recaptchaRef.current) {
           recaptchaRef.current.reset();
         }
       } else {
         console.error("Form submission failed:", response.status);
+        setIsSending(false)
         setDialogContent(
           <Dialog>
             <div className="flex gap-6">
@@ -217,6 +222,7 @@ export default function ContactPage() {
         );
       }
     } catch (error) {
+      setIsSending(false)
       console.error("Error submitting form:", error);
       setDialogContent(
         <Dialog>
@@ -1250,13 +1256,18 @@ export default function ContactPage() {
                 asyncScriptOnLoad={asyncScriptOnLoad}
               />
 
-              <Button
+              {!isSending ? <Button
                 type="submit"
                 disabled={!captchaVerified}
                 className="w-full bg-[#0073a6] hover:bg-[#00415f] text-white"
               >
                 Send Message
-              </Button>
+              </Button> : <Button
+                disabled={true}
+                className="w-full bg-[#0073a6] hover:bg-[#00415f] text-white"
+              >
+                Sending Message...
+              </Button>}
             </form>
           </div>
         </div>
