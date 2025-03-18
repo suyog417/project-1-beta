@@ -10,23 +10,23 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const router = useRouter();
+  // const [loggedIn, setLoggedIn] = useState(false);
+  // const router = useRouter();
 
-  useEffect(() => {
-    // Check if the user is logged in (e.g., check for a token in local storage)
-    const token = localStorage.getItem("authToken");
-    if (token) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-      router.push("/dashboard/login"); // Redirect to login page if not logged in
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   // Check if the user is logged in (e.g., check for a token in local storage)
+  //   const token = localStorage.getItem("authToken");
+  //   if (token) {
+  //     setLoggedIn(true);
+  //   } else {
+  //     setLoggedIn(false);
+  //     router.push("/dashboard/login"); // Redirect to login page if not logged in
+  //   }
+  // }, [router]);
 
-  if (!loggedIn) {
-    return null; // Or a loading indicator
-  }
+  // if (!loggedIn) {
+  //   return null; // Or a loading indicator
+  // }
 
   return (
     <div className="min-h-screen bg-gray-100">
