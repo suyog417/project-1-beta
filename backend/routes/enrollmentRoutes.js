@@ -1,30 +1,30 @@
-import express from 'express';
+import express from "express";
 import {
-createEnrollment,
+  createEnrollment,
   getEnrollment,
   getEnrollments,
   deleteEnrollment,
   updateEnrollment,
-  updateEnrollmentStatus
-} from '../controllers/enrollmentController.js';
+  updateEnrollmentStatus,
+} from "../controllers/enrollmentController.js";
 
-const router = express.Router()
+const router = express.Router();
 
 // GET all enrollments
-router.get('/', getEnrollments)
+router.get("/", getEnrollments);
 
 // GET a single enrollment
-router.get('/:id', getEnrollment)
+router.get("/:id", getEnrollment);
 
 // POST a new enrollment
-router.post('/', createEnrollment)
+router.post("/", createEnrollment);
 
 // DELETE a enrollment
-router.delete('/:id', deleteEnrollment)
+router.delete("/:id", deleteEnrollment);
 
 // UPDATE a enrollment
-router.patch('/:id', updateEnrollment)
+router.patch("/:id", updateEnrollment);
 
-router.patch('/update/:id', updateEnrollmentStatus)
+router.post("/update/:id", updateEnrollmentStatus);
 
-export default router
+export default router;
