@@ -119,9 +119,9 @@ export default function LoginPage() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
-                <Link href="/forgot-password" className="text-sm text-primary underline-offset-4 hover:underline">
+                {/* <Link href="/forgot-password" className="text-sm text-primary underline-offset-4 hover:underline">
                   Forgot password?
-                </Link>
+                </Link> */}
               </div>
               <div className="relative">
                 <Input
@@ -149,7 +149,7 @@ export default function LoginPage() {
               </div>
               {passwordError && <p className="text-sm text-destructive">{passwordError}</p>}
             </div>
-            <div className="flex items-center space-x-2">
+            {/* <div className="flex items-center space-x-2">
               <Checkbox
                 id="remember"
                 checked={rememberMe}
@@ -162,7 +162,7 @@ export default function LoginPage() {
               >
                 Remember me
               </Label>
-            </div>
+            </div> */}
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
             <Button type="submit" className="w-full" disabled={isLoading}>
