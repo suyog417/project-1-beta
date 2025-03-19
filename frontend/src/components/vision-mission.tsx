@@ -1,5 +1,6 @@
 // components/VisionMission.tsx
 
+import { Book, Lightbulb, LineChart } from 'lucide-react';
 import React from 'react';
 
 const VisionMission: React.FC = () => {
@@ -10,11 +11,12 @@ const VisionMission: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-12">
         {/* Vision/Mission 1 */}
         <div className="p-6 border rounded-lg shadow-md text-center">
-          <div className="mb-4">
+          <div className="mb-4 flex flex-row justify-center">
             {/* Replace with your icon component or image */}
-            <svg
+            <Book className='text-[#d7152f] self-center h-12 w-12'/>
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-12 mx-auto text-blue-500"
+              className="h-12 w-12 mx-auto text-[#d7152f]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -25,7 +27,7 @@ const VisionMission: React.FC = () => {
                 strokeWidth={2}
                 d="M12 6.042l-9 3.96v7.5a2 2 0 002 2h14a2 2 0 002-2v-7.5l-9-3.96z"
               />
-            </svg>
+            </svg> */}
           </div>
           <h3 className="text-lg font-semibold mb-2">Education Gap</h3>
           <p className="text-gray-700">
@@ -35,11 +37,12 @@ const VisionMission: React.FC = () => {
 
         {/* Vision/Mission 2 */}
         <div className="p-6 border rounded-lg shadow-md text-center">
-          <div className="mb-4">
+          <div className="mb-4 flex flex-row justify-center">
             {/* Replace with your icon component or image */}
-            <svg
+            <Lightbulb className='text-[#e39e0f] self-center h-12 w-12'/>
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-12 mx-auto text-green-500"
+              className="h-12 w-12 mx-auto text-[#e39e0f]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -50,7 +53,7 @@ const VisionMission: React.FC = () => {
                 strokeWidth={2}
                 d="M7 12l3-3 3 3m0 6l-3-3-3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
               />
-            </svg>
+            </svg> */}
           </div>
           <h3 className="text-lg font-semibold mb-2">Quality Training</h3>
           <p className="text-gray-700">
@@ -60,11 +63,12 @@ const VisionMission: React.FC = () => {
 
         {/* Vision/Mission 3 */}
         <div className="p-6 border rounded-lg shadow-md text-center">
-          <div className="mb-4">
+          <div className="mb-4 flex flex-row justify-center">
             {/* Replace with your icon component or image */}
-            <svg
+            <LineChart className='text-[#517e23] self-center h-12 w-12'/>
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-12 mx-auto text-yellow-500"
+              className=" mx-auto text-[#517e23]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -75,7 +79,7 @@ const VisionMission: React.FC = () => {
                 strokeWidth={2}
                 d="M9 17a2 2 0 11-4 0m5-14c.716-1.074 2.109-1.333 3.11-1.333a5.987 5.987 0 013.11 1.333m-1.5 10.49a3 3 0 01-4.24 0m-5.47 1.177l-.565.565a2 2 0 01-2.828 0l-.566-.566a3 3 0 00-4.24 0m15.177 0l-.565.565a2 2 0 01-2.828 0l-.566-.566a3 3 0 00-4.24 0m.002-8.16l-.566.566a2 2 0 01-2.828 0l-.565-.566a3 3 0 00-4.24 0"
               />
-            </svg>
+            </svg> */}
           </div>
           <h3 className="text-lg font-semibold mb-2">Industry-Ready</h3>
           <p className="text-gray-700">

@@ -9,13 +9,13 @@ import { cn } from "@/lib/utils"
 import { People, QuestionAnswer } from "@mui/icons-material"
 
 const navigation = [
-  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Blog Posts", href: "/dashboard/blogs", icon: FileText },
-  { name: "Team Members", href: "/dashboard/team", icon: Users },
-  { name: "Website Content", href: "/dashboard/content", icon: Settings },
-  { name: "Contact Forms", href: "/dashboard/contactForms", icon: Mail },
-  { name: "Ask an Actuary Queries", href: "/dashboard/queries", icon: QuestionAnswer },
-  { name: "Enrollments", href : "/dashboard/enrollments", icon: People}
+  { name: "Dashboard", href: "/8d5d8510418b2b901630fbe65bacbd1a/dashboard", icon: LayoutDashboard },
+  { name: "Blog Posts", href: "/8d5d8510418b2b901630fbe65bacbd1a/dashboard/blogs", icon: FileText },
+  { name: "Team Members", href: "/8d5d8510418b2b901630fbe65bacbd1a/dashboard/team", icon: Users },
+  { name: "Website Content", href: "/8d5d8510418b2b901630fbe65bacbd1a/dashboard/content", icon: Settings },
+  { name: "Contact Forms", href: "/8d5d8510418b2b901630fbe65bacbd1a/dashboard/contactForms", icon: Mail },
+  { name: "Ask an Actuary Queries", href: "/8d5d8510418b2b901630fbe65bacbd1a/dashboard/queries", icon: QuestionAnswer },
+  { name: "Enrollments", href : "/8d5d8510418b2b901630fbe65bacbd1a/dashboard/enrollments", icon: People}
 ]
 
 export function Sidebar() {

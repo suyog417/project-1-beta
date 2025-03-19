@@ -13,77 +13,79 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
+interface User {
+    email: string;
+    password: string;
+  }
+  
+const hardcodedUsers: User[] = [
+{ email: 'dhruv@get2act.in', password: 'get2act' },
+{ email: 'suyog@get2act.in', password: 'get2act' },
+// Add more users as needed
+];
+
 export default function LoginPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    rememberMe: false,
-  })
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  })
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [rememberMe, setRememberMe] = useState(false)
+  const [emailError, setEmailError] = useState("")
+  const [passwordError, setPasswordError] = useState("")
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-
-    // Clear error when user types
-    if (errors[name as keyof typeof errors]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }))
-    }
-  }
-
-  const handleCheckboxChange = (checked: boolean) => {
-    setFormData((prev) => ({ ...prev, rememberMe: checked }))
-  }
-
-  const validateForm = () => {
-    let valid = true
-    const newErrors = { email: "", password: "" }
-
-    if (!formData.email) {
-      newErrors.email = "Email is required"
-      valid = false
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid"
-      valid = false
-    }
-
-    if (!formData.password) {
-      newErrors.password = "Password is required"
-      valid = false
-    }
-
-    setErrors(newErrors)
-    return valid
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (!validateForm()) return
+    // Reset errors
+    setEmailError("")
+    setPasswordError("")
 
+    // Validate form
+    let isValid = true
+
+    if (!email) {
+      setEmailError("Email is required")
+      isValid = false
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError("Email is invalid")
+      isValid = false
+    }
+
+    if (!password) {
+      setPasswordError("Password is required")
+      isValid = false
+    }
+
+    if (!isValid) return
+
+    // Start loading
     setIsLoading(true)
 
     try {
       // Simulate authentication delay
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+      const user = hardcodedUsers.find(
+        (u) => u.email === email && u.password === password
+      );
 
       // Here you would typically make an API call to authenticate the user
       // const response = await fetch('/api/auth/login', {
       //   method: 'POST',
       //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email: formData.email, password: formData.password }),
+      //   body: JSON.stringify({ email, password, rememberMe }),
       // })
+      if (user) {
+        localStorage.setItem('authToken', 'true');
+        router.push('/8d5d8510418b2b901630fbe65bacbd1a/dashboard');
+      } else {
+        setPasswordError('Invalid email or password');
+      }
 
       // if (!response.ok) throw new Error('Authentication failed')
 
       // Redirect to dashboard on successful login
-      router.push("/dashboard")
+      router.push("/8d5d8510418b2b901630fbe65bacbd1a/dashboard")
     } catch (error) {
       console.error("Login error:", error)
       // Handle authentication error
@@ -105,15 +107,13 @@ export default function LoginPage() {
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
-                name="email"
                 type="email"
                 placeholder="name@example.com"
-                value={formData.email}
-                onChange={handleChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 disabled={isLoading}
-                aria-invalid={!!errors.email}
               />
-              {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+              {emailError && <p className="text-sm text-destructive">{emailError}</p>}
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
@@ -125,12 +125,10 @@ export default function LoginPage() {
               <div className="relative">
                 <Input
                   id="password"
-                  name="password"
                   type={showPassword ? "text" : "password"}
-                  value={formData.password}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   disabled={isLoading}
-                  aria-invalid={!!errors.password}
                 />
                 <Button
                   type="button"
@@ -148,13 +146,13 @@ export default function LoginPage() {
                   <span className="sr-only">{showPassword ? "Hide password" : "Show password"}</span>
                 </Button>
               </div>
-              {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
+              {passwordError && <p className="text-sm text-destructive">{passwordError}</p>}
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="remember"
-                checked={formData.rememberMe}
-                onCheckedChange={handleCheckboxChange}
+                checked={rememberMe}
+                onCheckedChange={(checked) => setRememberMe(checked === true)}
                 disabled={isLoading}
               />
               <Label
