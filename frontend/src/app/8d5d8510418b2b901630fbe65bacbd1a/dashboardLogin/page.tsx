@@ -21,6 +21,7 @@ interface User {
 const hardcodedUsers: User[] = [
 { email: 'dhruv@get2act.in', password: 'get2act' },
 { email: 'suyog@get2act.in', password: 'get2act' },
+{ email: 'get2act@get2act.in', password: 'get2act'}
 // Add more users as needed
 ];
 
