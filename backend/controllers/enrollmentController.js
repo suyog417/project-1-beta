@@ -41,6 +41,13 @@ export const createEnrollment = async (req, res) => {
       return res.status(400).json({ error: 'Please provide all required fields.' });
     }
 
+    // Check if an enrollment with the same email and coursetype already exists
+    const existingEnrollment = await Enrollment.findOne({ email, coursetype });
+
+    if (existingEnrollment) {
+      return res.status(409).json({ error: `You have already enrolled in the ${coursetype} course.` }); // 409 Conflict
+    }
+
     const enrollment = await Enrollment.create({
       name,
       email,
