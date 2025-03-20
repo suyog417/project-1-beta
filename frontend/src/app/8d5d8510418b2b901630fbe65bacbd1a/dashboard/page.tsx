@@ -18,9 +18,9 @@ export default function DashboardPage() {
         throw new Error('Failed to fetch dashboard stats');
       }
       const data = await response.json();
-      setTotalBlogPosts(data.totalBlogPosts);
-      setTotalTeamMembers(data.totalTeamMembers);
-      setContactRequests(data.totalContactRequests);
+      setTotalBlogPosts(data['totalBlogPosts']);
+      setTotalTeamMembers(data['totalTeamMembers']);
+      setContactRequests(data['totalContactRequests']);
     } catch (error) {
       console.error('Error fetching dashboard stats:', error);
     }
