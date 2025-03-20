@@ -45,7 +45,7 @@ export const createEnrollment = async (req, res) => {
     const existingEnrollment = await Enrollment.findOne({ email, coursetype });
 
     if (existingEnrollment) {
-      return res.status(210).json({ error: `You have already enrolled in the ${coursetype} course.` }); // 409 Conflict
+      return res.status(409).json({ error: `You have already enrolled in the ${coursetype} course.` }); // 409 Conflict
     }
 
     const enrollment = await Enrollment.create({

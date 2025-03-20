@@ -33,30 +33,27 @@ export default function EnrollmentForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     if (!captchaVerified) {
       alert("Please verify that you are not a robot.");
       return;
     }
-
+  
     const fullPhoneNumber = countryCode + formData.phone;
-
+  
     try {
-      setIsLoading(true)
-      const response = await fetch("https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/enrollments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({...formData, phone: fullPhoneNumber}),
-      });
-
-      if(response.status == 210){
-        setIsLoading(false)
-        setCaptchaVerified(false)
-        alert("You are already enrolled in this course.")
-        return
-      }
+      setIsLoading(true);
+      const response = await fetch(
+        "https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/enrollments",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...formData, phone: fullPhoneNumber }),
+        }
+      );
+  
       if (response.ok) {
         console.log("Form submitted successfully!");
         alert("Enrollment successful!");
@@ -67,20 +64,25 @@ export default function EnrollmentForm() {
           phone: "",
           city: "",
           coursetype: "Basic",
-          status: "pending"
+          status: "pending",
         });
         setCaptchaVerified(false);
-        setIsLoading(false)
+        setIsLoading(false);
         if (recaptchaRef.current) {
           recaptchaRef.current.reset();
         }
       } else {
-        setIsLoading(false)
+        setIsLoading(false);
         console.error("Form submission failed:", response.status);
-        alert(`Enrollment failed. Please try again. Status: ${response.status}`);
+  
+        if (response.status === 409) {
+          alert("You are already enrolled in this course.");
+        } else {
+          alert(`Enrollment failed. Please try again. Status: ${response.status}`);
+        }
       }
     } catch (error) {
-      setIsLoading(false)
+      setIsLoading(false);
       console.error("Error submitting form:", error);
       alert("An error occurred. Please try again later.");
     }
