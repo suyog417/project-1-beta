@@ -3,6 +3,8 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import clsx from "clsx";
 import ReCAPTCHA from "react-google-recaptcha";
+import { z } from "zod";
+import { RotatingLines } from "react-loader-spinner";
 
 export default function EnrollmentForm() {
   
@@ -33,6 +35,11 @@ export default function EnrollmentForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if(!z.string().email().parse(formData.email)){
+      alert("Enter valid email address.");
+      return;
+    }
   
     if (!captchaVerified) {
       alert("Please verify that you are not a robot.");
@@ -416,7 +423,16 @@ export default function EnrollmentForm() {
                 asyncScriptOnLoad={asyncScriptOnLoad}
               />
 
-      {!isLoading ? <Button disabled={!captchaVerified} type="submit">Enroll</Button> : <Button disabled={true}>Submitting....</Button>}
+      {!isLoading ? <Button disabled={!captchaVerified} type="submit">Enroll</Button> : <Button disabled={true}>Submitting....
+        <RotatingLines
+          visible={true}
+          strokeWidth="2"
+          animationDuration="0.75"
+          ariaLabel="rotating-lines-loading"
+          width="24"
+          strokeColor="white"
+        />
+  </Button>}
     </form>
   );
 }

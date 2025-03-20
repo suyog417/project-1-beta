@@ -1,6 +1,6 @@
 // components/VisionMission.tsx
 
-import { Book, Lightbulb, LineChart } from 'lucide-react';
+import { Award, Book, Lightbulb, LineChart } from 'lucide-react';
 import React from 'react';
 
 const VisionMission: React.FC = () => {
@@ -39,7 +39,7 @@ const VisionMission: React.FC = () => {
         <div className="p-6 border rounded-lg shadow-md text-center">
           <div className="mb-4 flex flex-row justify-center">
             {/* Replace with your icon component or image */}
-            <Lightbulb className='text-[#e39e0f] self-center h-12 w-12'/>
+            <Award className='text-[#e39e0f] self-center h-12 w-12'/>
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 mx-auto text-[#e39e0f]"
