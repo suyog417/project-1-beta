@@ -51,6 +51,12 @@ export default function EnrollmentForm() {
         body: JSON.stringify({...formData, phone: fullPhoneNumber}),
       });
 
+      if(response.status == 210){
+        setIsLoading(false)
+        setCaptchaVerified(false)
+        alert("You are already enrolled in this course.")
+        return
+      }
       if (response.ok) {
         console.log("Form submitted successfully!");
         alert("Enrollment successful!");
