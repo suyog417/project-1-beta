@@ -18,7 +18,7 @@ export default function Get2LearnPage() {
     "Predictive Modelling & Data Science in Actuarial Practice",
   ]
 
-  const courseStructure = [
+  const coreBasic = [
     {
       number: 1,
       title: "Fundamentals of Life Insurance & Actuarial Science",
@@ -79,19 +79,36 @@ export default function Get2LearnPage() {
     },
   ]
 
-  const advanceCourse = [
+  const corePractical = [
     {
       number:1,
-      title: "Market Consistent Embedded Value (MCEV)",
+      title: "Hands-on actuarial model development for:",
       description : "Understanding MCEV and how it differs from traditional embedded value",
       points: <ul>
-        <li>- Understanding MCEV and how it differs from traditional embedded value</li>
-        <li>- Components of MCEV: Present value of future profits (PVFP), risk margins, and cost of capital</li>
-        <li>- Practical modelling of embedded value in Excel</li>
+        <li>- Product pricing</li>
+        <li>- Reserving</li>
       </ul>
     },
     {
       number:2,
+      title: "Conducting exprience studies and analyzing mortality trends.",
+      description : "Understanding MCEV and how it differs from traditional embedded value",
+      points: <ul>
+      </ul>
+    },
+    {
+      number:3,
+      title: "Complete Actuarial Modeling Package ",
+      description : "Understanding MCEV and how it differs from traditional embedded value",
+      points: <ul>
+        <li>- Comprehensive learning Approach</li>
+      </ul>
+    },
+  ]
+
+  const specialization = [
+    {
+      number:1,
       title: "Risk-Based Capital (RBC) & Solvency",
       description : "Implementing an RBC framework for life insurers",
       points: <ul>
@@ -102,7 +119,7 @@ export default function Get2LearnPage() {
       </ul>
     },
     {
-      number:3,
+      number:2,
       title: "IFRS 17 & Financial Reporting for Insurance",
       description : "Introduction to IFRS 17 and its impact on insurance companies",
       points: <ul>
@@ -110,6 +127,44 @@ export default function Get2LearnPage() {
         <li>- Measurement models: GMM, PAA, and VFA</li>
         <li>- Understanding contract boundaries and discounting</li>
         <li>- Accounting treatment and disclosures</li>
+      </ul>
+    },
+  ]
+
+  const advanceCourse = [
+    {
+      number:1,
+      title: "Embedded Value (EV)",
+      description : "Understanding MCEV and how it differs from traditional embedded value",
+      points: <ul>
+        <li>- Understanding Embedded Value</li>
+        <li>- components of Embedded Value</li>
+        <li>- Types of Embedded Value (Traditional vs MCEV)</li>
+        <li>- Excel modelling</li>
+      </ul>
+    },
+    {
+      number:2,
+      title: "Asset share",
+      description : "Understanding MCEV and how it differs from traditional embedded value",
+      points: <ul>
+        <li>- definition and concept</li>
+        <li>- Why asset shares are used in bonus and surplus distribution</li>
+        <li>- Assets Share vs Reserve Based approach</li>
+        <li>- modelling asset shares in Excel</li>
+      </ul>
+    },
+    {
+      number:3,
+      title: "Participating (with profit) Products",
+      description : "Understanding MCEV and how it differs from traditional embedded value",
+      points: <ul>
+        <li>- Introduction to participating products</li>
+        <li>- Types of bonus and their calculations</li>
+        <li>- Pricing concepts for participating products</li>
+        <li>- Reserving for participating products</li>
+        <li>- Surplus distribution</li>
+        <li>- Practical modelling in excel</li>
       </ul>
     },
   ]
@@ -252,8 +307,10 @@ export default function Get2LearnPage() {
         </div>
       </section> */}
       <CourseStructure
-        courseStructure={courseStructure}
+        coreBasic={coreBasic}
+        specializationCourse={specialization}
         advanceCourse={advanceCourse}
+        corePractical={corePractical}
         id="course-structure"
       ></CourseStructure>
       <div className="flex flex-row justify-center mb-12">

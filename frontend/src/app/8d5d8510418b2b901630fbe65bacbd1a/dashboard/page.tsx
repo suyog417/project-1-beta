@@ -1,26 +1,30 @@
 'use client'
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileText, Users, Mail } from "lucide-react"
 import { useEffect, useState } from "react"
-import { Mongoose } from "mongoose"
+
+interface DashboardStats {
+  totalBlogPosts: number;
+  totalTeamMembers: number;
+  totalContactRequests: number;
+}
 
 export default function DashboardPage() {
-  const [totalBlogPosts, setTotalBlogPosts] = useState(0)
-  const [totalTeamMembers, setTotalTeamMembers] = useState(0)
-  const [totalContactRequests, setContactRequests] = useState(0)
-  
+  const [dashboardStats, setDashboardStats] = useState<DashboardStats>();
+
   const fetchDashboardStats = async () => {
     try {
-      const response = await fetch('https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/dashboardStats/',{
+      const response = await fetch('http://localhost:5000/api/dashboardStats/', {
         method: "GET"
       });
       if (!response.ok) {
         throw new Error('Failed to fetch dashboard stats');
       }
       const data = await response.json();
-      setTotalBlogPosts(data['totalBlogPosts']);
-      setTotalTeamMembers(data['totalTeamMembers']);
-      setContactRequests(data['totalContactRequests']);
+
+      console.log('Data received:', data);
+      setDashboardStats(data);
     } catch (error) {
       console.error('Error fetching dashboard stats:', error);
     }
@@ -30,10 +34,6 @@ export default function DashboardPage() {
     fetchDashboardStats();
   }, []);
 
-
-  useEffect(() => {
-    fetchDashboardStats()
-  })
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold text-[#00415f]">Dashboard</h1>
@@ -45,7 +45,7 @@ export default function DashboardPage() {
             <FileText className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalBlogPosts}</div>
+            <div className="text-2xl font-bold">{dashboardStats?.totalBlogPosts ?? 0}</div>
           </CardContent>
         </Card>
 
@@ -55,7 +55,7 @@ export default function DashboardPage() {
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalTeamMembers}</div>
+            <div className="text-2xl font-bold">{dashboardStats?.totalTeamMembers ?? 0}</div>
           </CardContent>
         </Card>
 
@@ -65,11 +65,10 @@ export default function DashboardPage() {
             <Mail className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalContactRequests}</div>
+            <div className="text-2xl font-bold">{dashboardStats?.totalContactRequests ?? 0}</div>
           </CardContent>
         </Card>
       </div>
     </div>
-  )
+  );
 }
-
