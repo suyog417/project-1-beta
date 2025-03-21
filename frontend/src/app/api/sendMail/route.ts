@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import { EmailTemplate } from "@/components/email-template";
 import { AdminEmailTemplate } from "@/components/admin-mail-template";
 
-const resend = new Resend("re_2nH2fSBW_6Q42nGRdGbsYCwmTk9aVNzyN");
+const resend = new Resend("re_JfqbH75Q_28bh3817xzT5kapYTo23owpW");
 
 export async function POST(req: Request, res:Response) {
   try {
@@ -19,7 +19,7 @@ export async function POST(req: Request, res:Response) {
     //   ),
     // });
     const { data, error } = await resend.emails.send({
-      from: "Get2Act <noreply@resend.dev>",
+      from: "Get2Act <noreply@get2act.in>",
       to: [email],
       subject: "New Contact Form Submission.",
       html: await render(

@@ -410,11 +410,13 @@ export default function EnrollmentForm() {
             "*:text-black"
           )}
         >
-          <option value="Basic">Basic</option>
+          <option value="Core Basic">Core Basic</option>
+          <option value="Core Practical">Core Practical</option>
           <option value="Advance">Advance</option>
+          <option value="Specialization">Specialization</option>
         </select>
       </div>
-      {formData.coursetype == "Advance" && <p><strong>Note: </strong>Enrollment in the advanced module requires meeting specific eligibility criteria. Enrollment is subjective and based on individual assessment.</p>}
+      {(formData.coursetype == "Advance" || formData.coursetype == "Specialization") && <p><strong>Note: </strong>Enrollment in the advanced module requires meeting specific eligibility criteria. Enrollment is subjective and based on individual assessment.</p>}
 
       <ReCAPTCHA
                 ref={recaptchaRef}
