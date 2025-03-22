@@ -3,11 +3,11 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import clsx from "clsx";
 import ReCAPTCHA from "react-google-recaptcha";
-import { z } from "zod";
+import * as z from "zod";
 import { RotatingLines } from "react-loader-spinner";
 
 export default function EnrollmentForm() {
-  
+
   const recaptchaRef :any = useRef(null);
   const [captchaVerified, setCaptchaVerified] = useState(false)
   const [countryCode, setCountryCode] = useState("+1");
@@ -18,7 +18,7 @@ export default function EnrollmentForm() {
     email: "",
     phone: "",
     city: "",
-    coursetype: "Basic", // Default value
+    coursetype: "Core Basic", // Default value
     status : "pending"
   });
 
@@ -35,8 +35,8 @@ export default function EnrollmentForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if(!z.string().email().parse(formData.email)){
+  
+    if (!z.string().email().safeParse(formData.email).success) {
       alert("Enter valid email address.");
       return;
     }
@@ -47,10 +47,10 @@ export default function EnrollmentForm() {
     }
   
     const fullPhoneNumber = countryCode + formData.phone;
+    setIsLoading(true);
   
     try {
-      setIsLoading(true);
-      const response = await fetch(
+      const enrollmentResponse = await fetch(
         "https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/enrollments",
         {
           method: "POST",
@@ -61,38 +61,67 @@ export default function EnrollmentForm() {
         }
       );
   
-      if (response.ok) {
-        console.log("Form submitted successfully!");
-        alert("Enrollment successful!");
-        // Reset form
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          city: "",
-          coursetype: "Basic",
-          status: "pending",
-        });
-        setCaptchaVerified(false);
-        setIsLoading(false);
-        if (recaptchaRef.current) {
-          recaptchaRef.current.reset();
-        }
-      } else {
-        setIsLoading(false);
-        console.error("Form submission failed:", response.status);
-  
-        if (response.status === 409) {
-          alert("You are already enrolled in this course.");
-        } else {
-          alert(`Enrollment failed. Please try again. Status: ${response.status}`);
-        }
+      if (!enrollmentResponse.ok) {
+        handleEnrollmentFailure(enrollmentResponse);
+        return;
       }
+  
+      await sendEnrollmentEmail(formData, fullPhoneNumber);
+      handleEnrollmentSuccess();
     } catch (error) {
+      handleGeneralError(error);
+    } finally {
       setIsLoading(false);
-      console.error("Error submitting form:", error);
-      alert("An error occurred. Please try again later.");
     }
+  };
+  
+  const sendEnrollmentEmail = async (formData: any, fullPhoneNumber: string) => {
+    try {
+      const emailResponse = await fetch("/api/sendEnrollmentForm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...formData, phone: fullPhoneNumber }),
+      });
+  
+      if (!emailResponse.ok) {
+        alert("Failed to send email.");
+      }
+    } catch {
+      alert("Something went wrong at our end. We'll resolve this issue soon.");
+    }
+  };
+  
+  const handleEnrollmentSuccess = () => {
+    console.log("Form submitted successfully!");
+    alert("Enrollment successful!");
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      city: "",
+      coursetype: "Basic",
+      status: "pending",
+    });
+    setCaptchaVerified(false);
+    if (recaptchaRef.current) {
+      recaptchaRef.current.reset();
+    }
+  };
+  
+  const handleEnrollmentFailure = (response: Response) => {
+    console.error("Form submission failed:", response.status);
+    if (response.status === 409) {
+      alert("You are already enrolled in this course.");
+    } else {
+      alert(`Enrollment failed. Please try again. Status: ${response.status}`);
+    }
+  };
+  
+  const handleGeneralError = (error: any) => {
+    console.error("Error submitting form:", error);
+    alert("An error occurred. Please try again later.");
   };
 
   const handleCountryCodeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-interface EnrollmentFormTemplateProps {
+interface AdminEnrollmentFormTemplateProps {
   name: string;
   email: string;
   phone: string;
@@ -8,26 +8,23 @@ interface EnrollmentFormTemplateProps {
   courseType: string;
 }
 
-export const EnrollmentFormTemplate = ({
+export const AdminEnrollmentFormTemplate = ({
   name,
   email,
   phone,
   city,
   courseType,
-}: EnrollmentFormTemplateProps) => {
+}: AdminEnrollmentFormTemplateProps) => {
   const now = new Date();
   const formattedDate = now.toLocaleString();
 
   return (
     <div style={container}>
-      <p style={heading}>Enrollment Confirmation</p>
+      <p style={heading}>New Enrollment Form Submission</p>
 
       <div style={submissionDetails}>
         <p>
-          <strong>Dear {name},</strong>
-        </p>
-        <p>
-          Thank you for enrolling! Below are your submission details:
+          <strong>Name:</strong> {name}
         </p>
         <p>
           <strong>Email:</strong> {email}
@@ -43,12 +40,6 @@ export const EnrollmentFormTemplate = ({
         </p>
         <p>
           <strong>Submitted On:</strong> {formattedDate}
-        </p>
-         <p>
-          We will contact you shortly with further details.
-        </p>
-        <p>
-          Thank you.
         </p>
       </div>
     </div>

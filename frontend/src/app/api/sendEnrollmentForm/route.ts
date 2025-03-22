@@ -1,14 +1,18 @@
 import { render } from "@react-email/components";
 import { Resend } from "resend";
-import { AdminEmailTemplate } from "@/components/admin-mail-template";
-import { EmailTemplate } from "@/components/email-template";
+import { AdminEnrollmentFormTemplate } from "@/components/email-templates/enrollment-form-admin-template";
+import { EnrollmentFormTemplate } from "@/components/email-templates/enrollment-form-template";
 
 const resend = new Resend("re_JfqbH75Q_28bh3817xzT5kapYTo23owpW");
 const adminEmail = "suyog3785@gmail.com";
 
 export async function POST(req: Request, res: Response) {
   try {
-    const { companyName, email, message, name, phone, profession } =
+    const { name,
+      email,
+      phone,
+      city,
+      courseType } =
       await req.json();
 
     // Send email to user
@@ -17,13 +21,12 @@ export async function POST(req: Request, res: Response) {
       to: [email],
       subject: "Thanks for choosing Get2Act.",
       html: await render(
-        EmailTemplate({
-          companyName,
-          email,
-          message,
+        EnrollmentFormTemplate({
           name,
+          email,
           phone,
-          profession,
+          city,
+          courseType,
         }),
       ),
     });
@@ -34,13 +37,12 @@ export async function POST(req: Request, res: Response) {
       to: [adminEmail],
       subject: "New Contact Form Submission.",
       html: await render(
-        AdminEmailTemplate({
-          companyName,
-          email,
-          message,
+        AdminEnrollmentFormTemplate({
           name,
+          email,
           phone,
-          profession,
+          city,
+          courseType,
         }),
       ),
     });

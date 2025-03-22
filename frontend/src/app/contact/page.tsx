@@ -10,7 +10,6 @@ import { motion } from "framer-motion";
 import ImageCarousel from "@/components/carousel/image-carousel";
 import { LinkedIn, WarningAmber } from "@mui/icons-material";
 import ReCAPTCHA from "react-google-recaptcha";
-import { verificationStatus } from "../api/verify-email/route";
 import { z } from "zod";
 
 export default function ContactPage() {
@@ -36,6 +35,8 @@ export default function ContactPage() {
           padding: "20px",
           border: "1px solid gray",
           borderRadius: "5px",
+          display: "flex",
+          flexDirection: "column"
         }}
       >
         {children}
@@ -44,6 +45,7 @@ export default function ContactPage() {
             onClick={(e) => {
               setDialogContent(null);
             }}
+            className="px-10"
           >
             Ok
           </Button>
@@ -143,54 +145,65 @@ export default function ContactPage() {
         );
 
         // Send a copy of the form data to the user
-        // try {
-        //   const emailResponse = await fetch('http://localhost:3000/api/sendMail', {
-        //     method: 'POST',
-        //     headers: {
-        //       'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //       name: formData.name,
-        //       email: formData.email,
-        //       phone: fullPhoneNumber,
-        //       company: formData.company,
-        //       message: formData.message,
-        //       profession: formData.profession,
-        //     }),
-        //   });
+        try {
+          const emailResponse = await fetch(
+            "/api/sendMail",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name: formData.name,
+                email: formData.email,
+                phone: fullPhoneNumber,
+                company: formData.company,
+                message: formData.message,
+                profession: formData.profession,
+              }),
+            },
+          );
 
-        //   if (emailResponse.ok) {
-        //     console.log('Confirmation email sent to user.');
-        //     setDialogContent(
-        //       <Dialog>
-        //         <div className="flex gap-6">
-        //           <h3>Form submitted successfully! Confirmation email sent.</h3>
-        //         </div>
-        //       </Dialog>
-        //     );
-        //   } else {
-        //     console.error('Failed to send confirmation email:', emailResponse.status);
-        //     setDialogContent(
-        //       <Dialog>
-        //         <div className="flex gap-6">
-        //           <WarningAmber />
-        //           <h3>Form submitted successfully! However, we failed to send you a confirmation email.</h3>
-        //         </div>
-        //       </Dialog>
-        //     );
-        //   }
-        // } catch (emailError) {
-        //   console.error('Error sending confirmation email:', emailError);
-        //   setDialogContent(
-        //     <Dialog>
-        //       <div className="flex gap-6">
-        //         <WarningAmber />
-        //         <h3>Form submitted successfully! However, there was an error sending you a confirmation email.</h3>
-        //       </div>
-        //     </Dialog>
-        //   );
-        // }
-        verificationStatus.set(formData.email, false);
+          if (emailResponse.ok) {
+            console.log("Confirmation email sent to user.");
+            setDialogContent(
+              <Dialog>
+                <div className="flex gap-6">
+                  <h3>Form submitted successfully! Confirmation email sent.</h3>
+                </div>
+              </Dialog>,
+            );
+          } else {
+            console.error(
+              "Failed to send confirmation email:",
+              emailResponse.status,
+            );
+            setDialogContent(
+              <Dialog>
+                <div className="flex gap-6">
+                  <WarningAmber />
+                  <h3>
+                    Form submitted successfully! However, we failed to send you
+                    a confirmation email.
+                  </h3>
+                </div>
+              </Dialog>,
+            );
+          }
+        } catch (emailError) {
+          console.error("Error sending confirmation email:", emailError);
+          setDialogContent(
+            <Dialog>
+              <div className="flex gap-6">
+                <WarningAmber />
+                <h3>
+                  Form submitted successfully! However, there was an error
+                  sending you a confirmation email.
+                </h3>
+              </div>
+            </Dialog>,
+          );
+        }
         // Optionally, reset the form
         setFormData({
           name: "",
@@ -208,7 +221,7 @@ export default function ContactPage() {
         }
       } else {
         console.error("Form submission failed:", response.status);
-        setIsSending(false)
+        setIsSending(false);
         setDialogContent(
           <Dialog>
             <div className="flex gap-6">
@@ -222,7 +235,7 @@ export default function ContactPage() {
         );
       }
     } catch (error) {
-      setIsSending(false)
+      setIsSending(false);
       console.error("Error submitting form:", error);
       setDialogContent(
         <Dialog>
@@ -1256,18 +1269,22 @@ export default function ContactPage() {
                 asyncScriptOnLoad={asyncScriptOnLoad}
               />
 
-              {!isSending ? <Button
-                type="submit"
-                disabled={!captchaVerified}
-                className="w-full bg-[#0073a6] hover:bg-[#00415f] text-white"
-              >
-                Send Message
-              </Button> : <Button
-                disabled={true}
-                className="w-full bg-[#0073a6] hover:bg-[#00415f] text-white"
-              >
-                Sending Message...
-              </Button>}
+              {!isSending ? (
+                <Button
+                  type="submit"
+                  disabled={!captchaVerified}
+                  className="w-full bg-[#0073a6] hover:bg-[#00415f] text-white"
+                >
+                  Send Message
+                </Button>
+              ) : (
+                <Button
+                  disabled={true}
+                  className="w-full bg-[#0073a6] hover:bg-[#00415f] text-white"
+                >
+                  Sending Message...
+                </Button>
+              )}
             </form>
           </div>
         </div>
