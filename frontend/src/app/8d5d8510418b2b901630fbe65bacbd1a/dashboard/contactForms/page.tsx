@@ -66,7 +66,7 @@ export default function ContactFormsPage() {
     } catch (error) {
       console.error("Error fetching contact forms:", error);
     }
-    setIsLoading(false);
+    // setIsLoading(false);
   };
 
   useEffect(() => {

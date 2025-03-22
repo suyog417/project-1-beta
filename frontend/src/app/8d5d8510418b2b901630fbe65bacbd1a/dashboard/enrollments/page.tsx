@@ -83,14 +83,14 @@ export default function EnrollmentsDashboard() {
         setEnrollments(enrollments.filter((form) => form._id !== id));
 
         fetchEnrollments();
-        alert("Contact form deleted successfully!");
+        alert("Enrollment form deleted successfully!");
       } else {
-        console.error("Failed to delete contact form");
-        alert("Failed to delete contact form.");
+        console.error("Failed to delete enrollment form");
+        alert("Failed to delete enrollment form.");
       }
     } catch (error) {
-      console.error("Error deleting contact form:", error);
-      alert("Error deleting contact form.");
+      console.error("Error deleting enrollment form:", error);
+      alert("Error deleting enrollment form.");
     }
   };
 
