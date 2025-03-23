@@ -4,7 +4,7 @@ import { AdminEnrollmentFormTemplate } from "@/components/email-templates/enroll
 import { EnrollmentFormTemplate } from "@/components/email-templates/enrollment-form-template";
 
 const resend = new Resend("re_JfqbH75Q_28bh3817xzT5kapYTo23owpW");
-const adminEmail = "suyog3785@gmail.com";
+const adminEmail = "noreply@gettoact.onmicrosoft.com";
 
 export async function POST(req: Request, res: Response) {
   try {
