@@ -138,7 +138,7 @@ export default function Get2LearnPage() {
       description : "Understanding MCEV and how it differs from traditional embedded value",
       points: <ul>
         <li>- Understanding Embedded Value</li>
-        <li>- components of Embedded Value</li>
+        <li>- Components of Embedded Value</li>
         <li>- Types of Embedded Value (Traditional vs MCEV)</li>
         <li>- Excel modelling</li>
       </ul>
@@ -148,10 +148,10 @@ export default function Get2LearnPage() {
       title: "Asset share",
       description : "Understanding MCEV and how it differs from traditional embedded value",
       points: <ul>
-        <li>- definition and concept</li>
+        <li>- Definition and concept</li>
         <li>- Why asset shares are used in bonus and surplus distribution</li>
         <li>- Assets Share vs Reserve Based approach</li>
-        <li>- modelling asset shares in Excel</li>
+        <li>- Modelling asset shares in Excel</li>
       </ul>
     },
     {

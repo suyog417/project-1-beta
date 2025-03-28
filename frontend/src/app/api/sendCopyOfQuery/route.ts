@@ -1,18 +1,16 @@
 import { render } from "@react-email/components";
 import { Resend } from "resend";
-import { AdminEnrollmentFormTemplate } from "@/components/email-templates/enrollment-form-admin-template";
-import { EnrollmentFormTemplate } from "@/components/email-templates/enrollment-form-template";
+import { AdminQueryFormTemplate } from "@/components/email-templates/query-template-admin";
+import { UserQueryConfirmationTemplate } from "@/components/email-templates/query-template-user";
 
 const resend = new Resend("re_JfqbH75Q_28bh3817xzT5kapYTo23owpW");
-const adminEmail = "noreply@gettoact.onmicrosoft.com";
+const adminEmail = "suyogbhoye1474@gmail.com";
 
 export async function POST(req: Request, res: Response) {
   try {
     const { name,
       email,
-      phone,
-      city,
-      courseType } =
+      query } =
       await req.json();
 
     // Send email to user
@@ -21,12 +19,9 @@ export async function POST(req: Request, res: Response) {
       to: [email],
       subject: "Thanks for choosing Get2Act.",
       html: await render(
-        EnrollmentFormTemplate({
+        UserQueryConfirmationTemplate({
           name,
-          email,
-          phone,
-          city,
-          courseType,
+          query
         }),
       ),
     });
@@ -35,14 +30,10 @@ export async function POST(req: Request, res: Response) {
     const adminEmailResponse = await resend.emails.send({
       from: "Get2Act <noreply@get2act.in>",
       to: [adminEmail],
-      subject: "New Enrollment Form Submission.",
+      subject: "New Query Form Submission.",
       html: await render(
-        AdminEnrollmentFormTemplate({
-          name,
-          email,
-          phone,
-          city,
-          courseType,
+        AdminQueryFormTemplate({
+          name,email,query
         }),
       ),
     });
@@ -59,5 +50,3 @@ export async function POST(req: Request, res: Response) {
     return Response.json({ error });
   }
 }
-
-

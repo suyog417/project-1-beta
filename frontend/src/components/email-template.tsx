@@ -39,6 +39,8 @@ export const EmailTemplate = ({
 
         <p>We appreciate your interest in Get2Act.</p>
         <p>Sincerely,<br></br>The Get2Act Team</p>
+
+        <p><strong>Disclaimer: </strong>DO NOT REPLY TO THIS EMAIL. THIS IS AN AUTO GENERATED MAIL AND REPLIES TO THIS MAIL ARE NOT ATTENDED TO THANKS</p>
     </div>
 );
 const container = {

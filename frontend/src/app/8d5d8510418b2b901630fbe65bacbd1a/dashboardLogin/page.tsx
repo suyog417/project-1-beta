@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Eye, EyeOff, Loader2 } from "lucide-react"
@@ -34,6 +34,14 @@ export default function LoginPage() {
   const [rememberMe, setRememberMe] = useState(false)
   const [emailError, setEmailError] = useState("")
   const [passwordError, setPasswordError] = useState("")
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      router.push('/8d5d8510418b2b901630fbe65bacbd1a/dashboard');
+    }
+  }
+  )
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

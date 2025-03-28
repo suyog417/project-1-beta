@@ -1,57 +1,37 @@
 import * as React from "react";
 
-interface EnrollmentFormTemplateProps {
+interface AdminQueryFormTemplateProps {
   name: string;
   email: string;
-  phone: string;
-  city: string;
-  courseType: string;
+  query: string;
 }
 
-export const EnrollmentFormTemplate = ({
+export const AdminQueryFormTemplate = ({
   name,
   email,
-  phone,
-  city,
-  courseType,
-}: EnrollmentFormTemplateProps) => {
+  query,
+}: AdminQueryFormTemplateProps) => {
   const now = new Date();
   const formattedDate = now.toLocaleString();
 
   return (
     <div style={container}>
-      <p style={heading}>Enrollment Confirmation</p>
+      <p style={heading}>New Query Submission</p>
 
       <div style={submissionDetails}>
         <p>
-          <strong>Dear {name},</strong>
-        </p>
-        <p>
-          Thank you for enrolling! Below are your submission details:
+          <strong>Name:</strong> {name}
         </p>
         <p>
           <strong>Email:</strong> {email}
         </p>
         <p>
-          <strong>Phone:</strong> {phone || "Not provided"}
-        </p>
-        <p>
-          <strong>Profession:</strong> {city || "Not provided"}
-        </p>
-        <p>
-          <strong>Company Name:</strong> {courseType || "Not provided"}
+          <strong>Query:</strong>
+          <div style={messageStyle}>{query}</div>
         </p>
         <p>
           <strong>Submitted On:</strong> {formattedDate}
         </p>
-         <p>
-          We will contact you shortly with further details.
-        </p>
-        <p>
-          Thank you.
-        </p>
-
-        <p><strong>Disclaimer: </strong>DO NOT REPLY TO THIS EMAIL. THIS IS AN AUTO GENERATED MAIL AND REPLIES TO THIS MAIL ARE NOT ATTENDED TO THANKS</p>
       </div>
     </div>
   );

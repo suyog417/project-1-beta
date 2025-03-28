@@ -24,6 +24,7 @@ const teamMemberSchema = new mongoose.Schema({
   },
   dashboardPassword: {
     type: String,
+    default: ""
   },
   createdAt: {
     type: Date,

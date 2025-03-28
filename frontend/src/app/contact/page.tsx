@@ -395,7 +395,7 @@ export default function ContactPage() {
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Name:
+                  Name<span className="text-red-500 text-lg"> *</span>
                 </label>
                 <Input
                   id="name"
@@ -411,7 +411,7 @@ export default function ContactPage() {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Email
+                  Email<span className="text-red-500 text-lg"> *</span>
                 </label>
                 <div className="flex flex-row items-center gap-2">
                   <Input
@@ -446,7 +446,7 @@ export default function ContactPage() {
                   htmlFor="phone"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Phone Number
+                  Phone Number<span className="text-red-500 text-lg"> *</span>
                 </label>
                 <div className="flex">
                   <select
@@ -1199,7 +1199,7 @@ export default function ContactPage() {
                   htmlFor="profession"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Profession
+                  Profession<span className="text-red-500 text-lg"> *</span>
                 </label>
                 <select
                   id="profession"
@@ -1207,6 +1207,7 @@ export default function ContactPage() {
                   value={formData.profession}
                   onChange={handleChange}
                   className="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0073a6] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  required
                 >
                   <option value="">Select Profession</option>
                   <option value="Student">Student</option>
@@ -1234,7 +1235,7 @@ export default function ContactPage() {
                   htmlFor="company"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Company/College Name
+                  Company/College Name<span className="text-red-500 text-lg"> *</span>
                 </label>
                 <Input
                   id="company"
@@ -1250,7 +1251,7 @@ export default function ContactPage() {
                   htmlFor="message"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Message
+                  Message<span className="text-red-500 text-lg"> *</span>
                 </label>
                 <Textarea
                   id="message"
