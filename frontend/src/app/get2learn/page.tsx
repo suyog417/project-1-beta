@@ -113,9 +113,9 @@ export default function Get2LearnPage() {
       description : "Implementing an RBC framework for life insurers",
       points: <ul>
         <li>- What is RBC and why it matters?</li>
-        <li>- Risk categories: Market risk, credit risk, insurance risk, and operational risk</li>
-        <li>- Capital adequacy and solvency regulations</li>
-        <li>- Implementing an RBC framework for life insurers</li>
+        <li>- Risk Categories: Market Risk, Credit Risk, Insurance Risk, and Operational Risk</li>
+        <li>- Capital Adequacy and Solvency Regulations</li>
+        <li>- Implementing an RBC framework for Life Insurers</li>
       </ul>
     },
     {
@@ -123,10 +123,10 @@ export default function Get2LearnPage() {
       title: "IFRS 17 & Financial Reporting for Insurance",
       description : "Introduction to IFRS 17 and its impact on insurance companies",
       points: <ul>
-        <li>- Introduction to IFRS 17 and its impact on insurance companies</li>
-        <li>- Measurement models: GMM, PAA, and VFA</li>
-        <li>- Understanding contract boundaries and discounting</li>
-        <li>- Accounting treatment and disclosures</li>
+        <li>- Introduction to IFRS 17 and its impact on Insurance Companies</li>
+        <li>- Measurement Models: GMM, PAA, and VFA</li>
+        <li>- Understanding Contract Boundaries and Discounting</li>
+        <li>- Accounting Treatment and Disclosures</li>
       </ul>
     },
   ]
@@ -148,10 +148,10 @@ export default function Get2LearnPage() {
       title: "Asset share",
       description : "Understanding MCEV and how it differs from traditional embedded value",
       points: <ul>
-        <li>- Definition and concept</li>
-        <li>- Why asset shares are used in bonus and surplus distribution</li>
-        <li>- Assets Share vs Reserve Based approach</li>
-        <li>- Modelling asset shares in Excel</li>
+        <li>- Definition and Concept</li>
+        <li>- Why Asset Shares are used in Bonus and Surplus Distribution</li>
+        <li>- Asset Share vs. Reserve based approach</li>
+        <li>- Modelling Asset Shares in Excel</li>
       </ul>
     },
     {
@@ -159,12 +159,12 @@ export default function Get2LearnPage() {
       title: "Participating (with profit) Products",
       description : "Understanding MCEV and how it differs from traditional embedded value",
       points: <ul>
-        <li>- Introduction to participating products</li>
-        <li>- Types of bonus and their calculations</li>
-        <li>- Pricing concepts for participating products</li>
-        <li>- Reserving for participating products</li>
-        <li>- Surplus distribution</li>
-        <li>- Practical modelling in excel</li>
+        <li>- Introduction to Participating Products</li>
+        <li>- Types of Bonus and their calculations</li>
+        <li>- Pricing concepts for Participating Products</li>
+        <li>- Reserving for Participating Products</li>
+        <li>- Surplus Distribution</li>
+        <li>- Practical Modelling in Excel</li>
       </ul>
     },
   ]
