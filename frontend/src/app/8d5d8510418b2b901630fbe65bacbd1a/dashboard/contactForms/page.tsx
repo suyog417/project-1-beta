@@ -157,7 +157,7 @@ export default function ContactFormsPage() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-end"><DownloadCSVButton data={contactForms} filename="blogs" /></div>
+      <div className="flex items-center justify-end"><DownloadCSVButton data={contactForms} filename="contact-form-submissions" /></div>
       <div className="flex flex-col sm:flex-row gap-4 justify-between">
         <div className="relative md:w-full sm:w-64">
           <Search className="absolute left-2 top-2.5 h-6 w-6 text-muted-foreground" />

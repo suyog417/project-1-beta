@@ -33,10 +33,13 @@ export default function DashboardPage() {
       if (!response.ok) {
         throw new Error('Failed to fetch dashboard stats');
       }
+      setLoading(false)
       const data = await response.json();
       console.log(data.totalBlogPosts)
       setDashboardStats(data);
+
     } catch (err) {
+      setLoading(false)
       if (err instanceof Error) {
         setError(err.message);
       } else {
