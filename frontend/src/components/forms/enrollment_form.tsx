@@ -51,7 +51,7 @@ export default function EnrollmentForm() {
   
     try {
       const enrollmentResponse = await fetch(
-        "https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/enrollments",
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/enrollments`,
         {
           method: "POST",
           headers: {

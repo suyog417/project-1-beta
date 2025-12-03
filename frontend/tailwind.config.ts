@@ -60,5 +60,5 @@ export default {
   		}
   	}
   },
-  plugins: [heroui(), require("tailwindcss-animate")],
+  plugins: [heroui(), require("tailwindcss-animate"),require('@tailwindcss/typography'),],
 } satisfies Config;

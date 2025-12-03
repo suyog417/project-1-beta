@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 import connectDB from "./config/db.js"; // Ensure file extension is included
-// import blogRoutes from "./routes/blogRoutes.js";
+import blogRoutes from "./routes/blogRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js"; // Ensure file extension is included
 import askAnActuaryRoutes from "./routes/askAnActuaryRoutes.js";
 import sendEmailRoutes from "./routes/sendEmailRoutes.js";
@@ -35,7 +35,7 @@ app.get("/", (req, res) => res.send("Express on Vercel"));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ✅ Routes
-// app.use("/api/blogs", blogRoutes);
+app.use("/api/blogs", blogRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/askAnActuary", askAnActuaryRoutes);
 app.use("/api/sendEmail", sendEmailRoutes);

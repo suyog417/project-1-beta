@@ -3,11 +3,16 @@ import Blog from "../models/Blog.js";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import mongoose from "mongoose";
+import { fileURLToPath } from "url";
 
 const router = express.Router();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Create the "uploads" directory if it doesn't exist
-const uploadsDir = path.join("/tmp", "uploads");
+const uploadsDir = path.join(__dirname, "../uploads");
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
 }
@@ -56,10 +61,18 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Fetch a single blog by ID
+// Fetch a single blog by ID or Slug
 router.get("/:id", async (req, res) => {
   try {
-    const blog = await Blog.findById(req.params.id);
+    const { id } = req.params;
+    let blog;
+
+    if (mongoose.Types.ObjectId.isValid(id)) {
+      blog = await Blog.findById(id);
+    } else {
+      blog = await Blog.findOne({ slug: id });
+    }
+
     if (!blog) {
       return res.status(404).json({ message: "Blog not found" });
     }

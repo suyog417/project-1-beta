@@ -21,7 +21,7 @@ export default function TeamMembersEditor() {
 
   const fetchTeamDetails = async () => {
     try {
-      const res = await fetch("https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/teamMembers/");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/teamMembers/`);
       const data = await res.json();
       setTeamMembers(data);
     } catch (error) {

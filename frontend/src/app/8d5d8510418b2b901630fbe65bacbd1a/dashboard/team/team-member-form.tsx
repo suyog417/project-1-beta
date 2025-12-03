@@ -71,7 +71,7 @@ export function TeamMemberForm({ defaultValues }: { defaultValues?: TeamMember }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const response = await fetch("https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/teamMembers/", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/teamMembers/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

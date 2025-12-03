@@ -58,7 +58,7 @@ export default function EnrollmentsDashboard() {
   const fetchEnrollments = async () => {
     try {
       const res = await fetch(
-        "https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/enrollments",
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/enrollments`,
       );
       const data = await res.json();
       setEnrollments(data);
@@ -74,7 +74,7 @@ export default function EnrollmentsDashboard() {
   const handleDelete = async (id: string) => {
     try {
       const response = await fetch(
-        `https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/enrollments/${id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/enrollments/${id}`,
         {
           method: "DELETE",
         },
@@ -109,7 +109,7 @@ export default function EnrollmentsDashboard() {
   const updateStatus = async (id: string, status: string) => {
     try {
       const response = await fetch(
-        `https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/enrollments/update/${id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/enrollments/update/${id}`,
         {
           method: "POST",
           body: JSON.stringify({ status: status }),

@@ -18,13 +18,25 @@ const nextConfig: NextConfig = {
         protocol: 'https'
       },
       {
+        pathname: '/**',
+        hostname: 'cdn.corporatefinanceinstitute.com',
+        port: '',
+        protocol: 'https'
+      },
+      {
+        pathname: '/**',
+        hostname: 'media.istockphoto.com',
+        port: '',
+        protocol: 'https'
+      },
+      {
         pathname: '/photos/**',
         hostname: 'api.unsplash.com',
         port: '',
         protocol: 'https'
       }
     ],
-    domains: ['https://hebbkx1anhila5yf.public.blob.vercel-storage.com', 'https://api.unsplash.com', 'images.unsplash.com']
+    domains: ['https://hebbkx1anhila5yf.public.blob.vercel-storage.com', 'https://api.unsplash.com', 'images.unsplash.com', 'cdn.corporatefinanceinstitute.com', 'media.istockphoto.com']
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'src/assets')],

@@ -2,3 +2,4 @@ User-agent: *
 Disallow: /8d5d8510418b2b901630fbe65bacbd1a/dashboard/
 Disallow: /admin/
 Disallow: /8d5d8510418b2b901630fbe65bacbd1a/dashboardLogin
+Sitemap: https://get2act.com/sitemap.xml

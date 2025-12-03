@@ -25,7 +25,7 @@ export default function DashboardPage() {
     setError(null);
     try {
       const response = await fetch(
-        'https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/dashboardStats/',
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/dashboardStats/`,
         {
           method: 'GET',
         }

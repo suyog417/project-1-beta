@@ -56,7 +56,7 @@ export default function ContactFormsPage() {
   const fetchContactForms = async () => {
     try {
       const response = await fetch(
-        "https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/contact/all",
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contact/all`,
       );
       if (response.ok) {
         const data = await response.json();
@@ -109,7 +109,7 @@ export default function ContactFormsPage() {
   const handleDelete = async (id: string) => {
     try {
       const response = await fetch(
-        `https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/contact/${id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contact/${id}`,
         {
           method: "DELETE",
         },
@@ -131,7 +131,7 @@ export default function ContactFormsPage() {
   const updateStatus = async (id: string, status: string) => {
     try {
       const response = await fetch(
-        `https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/contact/update/${id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contact/update/${id}`,
         {
           method: "POST",
           body: JSON.stringify({ status: status }),

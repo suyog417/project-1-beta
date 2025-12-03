@@ -39,7 +39,7 @@ export default function QueriesPage() {
 
     const fetchQueries = async () => {
       try {
-        const response = await fetch("https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/askAnActuary/all");
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/askAnActuary/all`);
         if (response.ok) {
           const data = await response.json();
           setQueries(data);
@@ -57,7 +57,7 @@ export default function QueriesPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/askAnActuary/${id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/askAnActuary/${id}`, {
         method: "DELETE",
       });
 
@@ -88,7 +88,7 @@ export default function QueriesPage() {
   const updateStatus = async (id: string, status: string) => {
     try {
       const response = await fetch(
-        `https://back-get-2-act-git-main-get2act-techs-projects.vercel.app/api/enrollments/update/${id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/enrollments/update/${id}`,
         {
           method: "POST",
           body: JSON.stringify({ status: status }),
