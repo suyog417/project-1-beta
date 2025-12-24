@@ -363,7 +363,7 @@ export default function ContactPage() {
                 <div className="space-y-3">
                   <div className="flex gap-2 text-gray-600 items-center pl-[1.5]">
                     <Phone className="h-5 w-5 text-[#0073a6]" />
-                    <a href="tel:+91 9004943299">+91 9004943299</a>
+                    <a href="tel:+91 22 6881 1540">+91 22 6881 1540</a>
                   </div>
                   <div className="flex gap-2 text-gray-600 items-center pl-[1.5]">
                     <Mail className="h-5 w-5 text-[#0073a6]" />

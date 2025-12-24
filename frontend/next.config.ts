@@ -12,6 +12,12 @@ const nextConfig: NextConfig = {
     ],
     remotePatterns: [
       {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '5000',
+        pathname: '/uploads/**',
+      },
+      {
         pathname: '/**',
         hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
         port: '',
@@ -36,7 +42,7 @@ const nextConfig: NextConfig = {
         protocol: 'https'
       }
     ],
-    domains: ['https://hebbkx1anhila5yf.public.blob.vercel-storage.com', 'https://api.unsplash.com', 'images.unsplash.com', 'cdn.corporatefinanceinstitute.com', 'media.istockphoto.com']
+    domains: ['localhost', 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com', 'https://api.unsplash.com', 'images.unsplash.com', 'cdn.corporatefinanceinstitute.com', 'media.istockphoto.com']
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'src/assets')],

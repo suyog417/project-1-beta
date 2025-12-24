@@ -23,7 +23,7 @@ export default function BlogListing() {
     const fetchBlogs = async () => {
       try {
         // Use relative path - Next.js will route this to your local API
-        const res = await fetch("/api/blogs"); 
+        const res = await fetch("https://back-get-2-act.vercel.app/api/blogs"); 
         
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);

@@ -12,6 +12,7 @@ const navigation = [
   { name: "Dashboard", href: "/8d5d8510418b2b901630fbe65bacbd1a/dashboard", icon: LayoutDashboard },
   { name: "Blog Posts", href: "/8d5d8510418b2b901630fbe65bacbd1a/dashboard/blogs", icon: FileText },
   { name: "Team Members", href: "/8d5d8510418b2b901630fbe65bacbd1a/dashboard/team", icon: Users },
+  { name: "About Page", href: "/8d5d8510418b2b901630fbe65bacbd1a/dashboard/about", icon: FileText },
   { name: "Website Content", href: "/8d5d8510418b2b901630fbe65bacbd1a/dashboard/content", icon: Settings },
   { name: "Contact Forms", href: "/8d5d8510418b2b901630fbe65bacbd1a/dashboard/contactForms", icon: Mail },
   { name: "Ask an Actuary Queries", href: "/8d5d8510418b2b901630fbe65bacbd1a/dashboard/queries", icon: QuestionAnswer },
