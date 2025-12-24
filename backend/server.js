@@ -11,6 +11,8 @@ import sendEmailRoutes from "./routes/sendEmailRoutes.js";
 import enrollmenRoutes from "./routes/enrollmentRoutes.js"
 import dashboardStatsRoutes from "./routes/dashboardStatsRoutes.js"
 import teamMemberRoutes from "./routes/teamMemberRoutes.js"
+import aboutRoutes from "./routes/aboutRoutes.js"
+import uploadRoutes from "./routes/uploadRoutes.js"
 // Get the directory name in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -42,6 +44,8 @@ app.use("/api/sendEmail", sendEmailRoutes);
 app.use("/api/enrollments",enrollmenRoutes);
 app.use("/api/dashboardStats", dashboardStatsRoutes);
 app.use("/api/teamMembers", teamMemberRoutes);
+app.use("/api/about", aboutRoutes);
+app.use("/api/upload", uploadRoutes);
 
 
 // ✅ Error Handling Middleware
